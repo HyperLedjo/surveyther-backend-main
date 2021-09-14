@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyperledjo.surveyther.DAO.TestDAO">
+	<select id="selectTestList" resultType="com.hyperledjo.surveyther.DTO.TestDTO">
+		SELECT
+			employee_id,
+			first_name,
+			salary
+		FROM 
+			employees
+	</select>
+</mapper>
