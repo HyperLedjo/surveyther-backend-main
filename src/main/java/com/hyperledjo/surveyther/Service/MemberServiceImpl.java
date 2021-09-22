@@ -2,20 +2,30 @@ package com.hyperledjo.surveyther.Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hyperledjo.surveyther.DAO.TestDAO;
-import com.hyperledjo.surveyther.DTO.TestDTO;
+import com.hyperledjo.surveyther.DAO.MemberDAO;
+import com.hyperledjo.surveyther.DTO.Member;
 
 @Service
-public class TestServiceImpl implements TestService {
+public class MemberServiceImpl implements MemberService {
 
-	@Autowired
-	private TestDAO testDAO;
-	
-	public List<TestDTO> selectTestList() {
-		return testDAO.selectTestList();
+	private MemberDAO memberDAO;
+
+	public MemberServiceImpl(MemberDAO memberDAO) {
+		this.memberDAO = memberDAO;
 	}
-	
+
+	@Override
+	public List<Member> getMemberList() {
+		// TODO Auto-generated method stub
+		return memberDAO.getMemberList();
+	}
+
+	@Override
+	public void postMember(Member member) {
+		// TODO Auto-generated method stub
+		memberDAO.postMember(member);
+	}
+
 }

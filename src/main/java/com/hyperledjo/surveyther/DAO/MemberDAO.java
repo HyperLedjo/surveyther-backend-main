@@ -3,24 +3,28 @@ package com.hyperledjo.surveyther.DAO;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.hyperledjo.surveyther.DTO.TestDTO;
+import com.hyperledjo.surveyther.DTO.Member;
 
 @Repository
-public class TestDAO {
+public class MemberDAO {
 
-	private String nameSpace = "com.hyperledjo.surveyther.DAO.TestDAO";
-	
-	@Autowired
+	private String nameSpace = "com.hyperledjo.surveyther.DAO.MemberDAO";
 	private SqlSessionTemplate sql;
+
+	public MemberDAO(SqlSessionTemplate sql) {
+		this.sql = sql;
+	}
+
+	public void postMember(Member member) {
+		sql.insert(nameSpace + ".postMember", member);
+	}
 	
-	
-	public List<TestDTO> selectTestList() {
+	public List<Member> getMemberList() {
 		// TODO Auto-generated method stub
-		List<TestDTO> testList = sql.selectList(nameSpace + ".selectTestList");
-		return testList;
+		List<Member> memberList = sql.selectList(nameSpace + ".getMemberList");
+		return memberList;
 	}
 
 }

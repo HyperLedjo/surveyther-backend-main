@@ -2,26 +2,33 @@ package com.hyperledjo.surveyther.Controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyperledjo.surveyther.DTO.TestDTO;
-import com.hyperledjo.surveyther.Service.TestService;
+import com.hyperledjo.surveyther.DTO.Member;
+import com.hyperledjo.surveyther.Service.MemberService;
 
 @RestController
 @RequestMapping("/api")
-public class TestController {
+public class MemberController {
 
-	@Autowired
-	TestService testService;
+	private MemberService memberService;
 	
-	@GetMapping("/test")
-	public List<TestDTO> test() {
-		System.out.println("Run Test");
-		List<TestDTO> testList = testService.selectTestList();
-		System.out.println(testList);
-		return testList;
+	public MemberController(MemberService memberService) {
+		this.memberService = memberService;
+	}
+	
+	@PostMapping("/member")
+	public void postMember(Member member) {
+		System.out.println(member);	
+	}
+	
+	@GetMapping("/member")
+	public List<Member> getMemberList() {
+		List<Member> memberList = memberService.getMemberList();
+		System.out.println(memberList);
+		return memberList;
 	}
 }

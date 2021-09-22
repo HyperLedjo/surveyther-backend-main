@@ -2,10 +2,10 @@ package com.hyperledjo.surveyther.Service;
 
 import java.util.List;
 
-import com.hyperledjo.surveyther.DTO.TestDTO;
+import com.hyperledjo.surveyther.DTO.Member;
 
-public interface TestService {
+public interface MemberService {
 
-	List<TestDTO> selectTestList();
-	
+	public void postMember(Member member);
+	public List<Member> getMemberList();
 }
