@@ -18,4 +18,9 @@ public class OAuth2Service {
 		JsonNode jsonNode = oAuth2Login.getToken(code);
 		return jsonNode;
 	}
+	
+	public JsonNode getUser(String token) {
+		JsonNode jsonNode = oAuth2Login.getUser(token);
+		return jsonNode;
+	}
 }

@@ -1,14 +1,13 @@
 package com.hyperledjo.surveyther.DTO;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Member {
 	private int no;
 	private String id;
-	private String password;
 	private String name;
-	private Date birth;
+	private String birthYear;
+	private String birthday;
 	private String gender;
 	private String phone1;
 	private String phone2;
@@ -39,28 +38,12 @@ public class Member {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Date getBirth() {
-		return birth;
-	}
-
-	public void setBirth(Date birth) {
-		this.birth = birth;
 	}
 
 	public String getGender() {
@@ -167,11 +150,28 @@ public class Member {
 		this.regDate = regDate;
 	}
 
+	public String getBirthYear() {
+		return birthYear;
+	}
+
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
 	@Override
 	public String toString() {
-		return "Member [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", birth=" + birth
-				+ ", gender=" + gender + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3 + ", email="
-				+ email + ", zipCode=" + zipCode + ", residence=" + residence + ", job=" + job + ", married=" + married
-				+ ", academic=" + academic + ", income=" + income + ", wallet=" + wallet + ", regDate=" + regDate + "]";
+		return "Member [no=" + no + ", id=" + id + ", name=" + name + ", birthYear=" + birthYear + ", birthday="
+				+ birthday + ", gender=" + gender + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
+				+ ", email=" + email + ", zipCode=" + zipCode + ", residence=" + residence + ", job=" + job
+				+ ", married=" + married + ", academic=" + academic + ", income=" + income + ", wallet=" + wallet
+				+ ", regDate=" + regDate + "]";
 	}
 }
