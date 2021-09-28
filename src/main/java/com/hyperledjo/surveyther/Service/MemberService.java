@@ -8,21 +8,27 @@ import com.hyperledjo.surveyther.DAO.MemberDAO;
 import com.hyperledjo.surveyther.DTO.Member;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class MemberService {
 
 	private MemberDAO memberDAO;
 
-	public MemberServiceImpl(MemberDAO memberDAO) {
+	public MemberService(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
-
-	@Override
+	
+	public int putMember(Member member) {
+		return memberDAO.putMember(member);
+	}
+	
+	public Member getMember(String id) {
+		return memberDAO.getMember(id);
+	}
+	
 	public List<Member> getMemberList() {
 		// TODO Auto-generated method stub
 		return memberDAO.getMemberList();
 	}
 
-	@Override
 	public void postMember(Member member) {
 		// TODO Auto-generated method stub
 		memberDAO.postMember(member);

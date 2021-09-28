@@ -16,6 +16,10 @@ public class KeyController {
 		this.keyConfig = keyConfig;
 	}
 	
+	/*
+	 * 프론트엔드에서 REST API KEY를 조회
+	 * return String(Key)
+	 */
 	@GetMapping("/rest/key")
 	public String getKey() {	
 		return keyConfig.getRestApiKey();

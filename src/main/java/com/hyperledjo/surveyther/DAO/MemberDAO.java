@@ -17,10 +17,22 @@ public class MemberDAO {
 		this.sql = sql;
 	}
 
+	public int putMember(Member member) {
+		if (0 < sql.update(nameSpace, member)) {
+			return 1;
+		}
+		return 0;
+	}
+
 	public void postMember(Member member) {
 		sql.insert(nameSpace + ".postMember", member);
 	}
-	
+
+	public Member getMember(String id) {
+		Member member = sql.selectOne(nameSpace, id);
+		return member;
+	}
+
 	public List<Member> getMemberList() {
 		// TODO Auto-generated method stub
 		List<Member> memberList = sql.selectList(nameSpace + ".getMemberList");
