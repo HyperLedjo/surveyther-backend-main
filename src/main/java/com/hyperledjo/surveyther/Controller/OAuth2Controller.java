@@ -20,9 +20,11 @@ import com.hyperledjo.surveyther.Service.OAuth2Service;
 public class OAuth2Controller {
 
 	private OAuth2Service oAuth2Service;
-
-	public OAuth2Controller(OAuth2Service oAuth2Service) {
+	private HttpSession httpSession;
+	
+	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession) {
 		this.oAuth2Service = oAuth2Service;
+		this.httpSession = httpSession;
 	}
 
 //	@GetMapping("/token")
@@ -39,13 +41,13 @@ public class OAuth2Controller {
 	 * Session에 저장되어 있는 카카오톡 유저 정보를 조회(DB에서 조회X)
 	 */
 	@GetMapping("/me")
-	public Member getMember(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
+	public Member getMember() {
+//		HttpSession session = request.getSession();
+		Member member = (Member) httpSession.getAttribute("member");
 		if(member != null) {
+			System.out.println("Request: " + member.toString());
 			return member;
 		}
-		System.out.println(member);
 		return null;	
 	}
 	
@@ -54,8 +56,8 @@ public class OAuth2Controller {
 	 * Session을 만료시키고, 메인 페이지로 리다이렉트
 	 */
 	@GetMapping("/logout")
-	public void logout(HttpSession session, HttpServletResponse response) throws IOException {
-		session.invalidate();
+	public void logout(HttpServletResponse response) throws IOException {
+		httpSession.invalidate();
 		response.sendRedirect("http://localhost:8081");
 	}
 
@@ -68,11 +70,8 @@ public class OAuth2Controller {
 	 * Session에 등록
 	 */
 	@GetMapping("/login")
-	public void login(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response)
+	public void login(@RequestParam("code") String code, HttpServletResponse response)
 			throws IOException {
-
-		HttpSession session = request.getSession();
-		
 		Member member = new Member();
 		System.out.println("[GET /oauth/login] Code: " + code);
 		JsonNode jsonNode = oAuth2Service.login(code);
@@ -81,7 +80,7 @@ public class OAuth2Controller {
 		String token = jsonNode.get("access_token").toString();
 
 		System.out.println("[GET /oauth/login] Token: " + token);
-		session.setAttribute("token", token);
+		// httpSession.setAttribute("token", token);
 
 		response.sendRedirect("http://localhost:8081");
 
@@ -97,7 +96,7 @@ public class OAuth2Controller {
 		member.setEmail(email);
 		member.setBirthday(birthday);
 		member.setGender(gender);
-		session.setAttribute("member", member);
+		httpSession.setAttribute("member", member);
 
 		System.out.println("[GET /oauth/login] UserInfo: " + member.toString());
 	}
