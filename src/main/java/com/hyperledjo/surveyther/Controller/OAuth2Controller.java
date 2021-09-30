@@ -2,7 +2,6 @@ package com.hyperledjo.surveyther.Controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -21,39 +20,27 @@ public class OAuth2Controller {
 
 	private OAuth2Service oAuth2Service;
 	private HttpSession httpSession;
-	
+
 	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession) {
 		this.oAuth2Service = oAuth2Service;
 		this.httpSession = httpSession;
 	}
 
-//	@GetMapping("/token")
-//	public String getToken(HttpSession session) {
-//		String t = session.getAttribute("token").toString();
-//		if(t.isEmpty()) {
-//			return "";
-//		}
-//		System.out.println(t);
-//		return session.getAttribute("token").toString();
-//	}
-	
 	/*
 	 * Session에 저장되어 있는 카카오톡 유저 정보를 조회(DB에서 조회X)
 	 */
 	@GetMapping("/me")
 	public Member getMember() {
-//		HttpSession session = request.getSession();
 		Member member = (Member) httpSession.getAttribute("member");
-		if(member != null) {
-			System.out.println("Request: " + member.toString());
+		if (member != null) {
+			System.out.println("[GET /oauth2/me] " + member.toString());
 			return member;
 		}
-		return null;	
+		return null;
 	}
-	
+
 	/*
-	 * 카카오톡 로그아웃 서비스
-	 * Session을 만료시키고, 메인 페이지로 리다이렉트
+	 * 카카오톡 로그아웃 서비스 Session을 만료시키고, 메인 페이지로 리다이렉트
 	 */
 	@GetMapping("/logout")
 	public void logout(HttpServletResponse response) throws IOException {
@@ -62,16 +49,11 @@ public class OAuth2Controller {
 	}
 
 	/*
-	 * 카카오톡 로그인 서비스
-	 * 카카오톡 로그인 완료시 리다이렉트 되는 REST API로
-	 * 발급된 인가 코드를 인자로 전달
-	 * 인가 코드를 통해 접근 토큰과 리프레시 토큰을 발급 
-	 * 발급된 접근 토큰으로 카카오톡 유저 정보를 획득하고
-	 * Session에 등록
+	 * 카카오톡 로그인 서비스 카카오톡 로그인 완료시 리다이렉트 되는 REST API로 발급된 인가 코드를 인자로 전달 인가 코드를 통해 접근
+	 * 토큰과 리프레시 토큰을 발급 발급된 접근 토큰으로 카카오톡 유저 정보를 획득하고 Session에 등록
 	 */
 	@GetMapping("/login")
-	public void login(@RequestParam("code") String code, HttpServletResponse response)
-			throws IOException {
+	public void login(@RequestParam("code") String code, HttpServletResponse response) throws IOException {
 		Member member = new Member();
 		System.out.println("[GET /oauth/login] Code: " + code);
 		JsonNode jsonNode = oAuth2Service.login(code);
@@ -80,24 +62,25 @@ public class OAuth2Controller {
 		String token = jsonNode.get("access_token").toString();
 
 		System.out.println("[GET /oauth/login] Token: " + token);
-		// httpSession.setAttribute("token", token);
-
-		response.sendRedirect("http://localhost:8081");
 
 		jsonNode = oAuth2Service.getUser(token);
 		String id = jsonNode.get("id").toString();
+		
 
 		JsonNode kakaoAccount = jsonNode.get("kakao_account");
-		String email = kakaoAccount.get("email").toString();
-		String birthday = kakaoAccount.get("birthday").toString();
-		String gender = kakaoAccount.get("gender").toString();
+		String email = kakaoAccount.get("email").asText();
+		String birthday = kakaoAccount.get("birthday").asText();
+		String gender = kakaoAccount.get("gender").asText();
 
 		member.setId(id);
 		member.setEmail(email);
-		member.setBirthday(birthday);
+		member.setBirthDay(birthday);
 		member.setGender(gender);
 		httpSession.setAttribute("member", member);
-
 		System.out.println("[GET /oauth/login] UserInfo: " + member.toString());
+
+//		oAuth2Service.regUser(member);
+
+		response.sendRedirect("http://localhost:8081");
 	}
 }

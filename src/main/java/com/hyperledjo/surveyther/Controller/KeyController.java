@@ -9,19 +9,18 @@ import com.hyperledjo.surveyther.Config.KeyConfig;
 @RestController
 @RequestMapping("/api")
 public class KeyController {
-	
+
 	private KeyConfig keyConfig;
-	
+
 	public KeyController(KeyConfig keyConfig) {
 		this.keyConfig = keyConfig;
 	}
-	
+
 	/*
 	 * 프론트엔드에서 REST API KEY를 조회
-	 * return String(Key)
 	 */
 	@GetMapping("/rest/key")
-	public String getKey() {	
+	public String getKey() {
 		return keyConfig.getRestApiKey();
 	}
 }

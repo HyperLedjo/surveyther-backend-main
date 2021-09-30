@@ -18,25 +18,31 @@ public class MemberDAO {
 	}
 
 	public int putMember(Member member) {
-		if (0 < sql.update(nameSpace, member)) {
+		if (0 < sql.update(nameSpace + ".putMember", member)) {
 			return 1;
 		}
 		return 0;
 	}
 
-	public void postMember(Member member) {
-		sql.insert(nameSpace + ".postMember", member);
+	public int postMember(Member member) {
+		try { 
+			sql.insert(nameSpace + ".postMember", member);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			System.out.println("[postMember]" + member.toString());
+		}
+		return 1;
 	}
 
 	public Member getMember(String id) {
-		Member member = sql.selectOne(nameSpace, id);
+		Member member = sql.selectOne(nameSpace + ".getMember", id);
 		return member;
 	}
 
 	public List<Member> getMemberList() {
-		// TODO Auto-generated method stub
 		List<Member> memberList = sql.selectList(nameSpace + ".getMemberList");
 		return memberList;
 	}
-
 }

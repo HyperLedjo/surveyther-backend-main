@@ -7,20 +7,28 @@ public class Member {
 	private String id;
 	private String name;
 	private String birthYear;
-	private String birthday;
+	private String birthDay;
 	private String gender;
 	private String phone1;
 	private String phone2;
 	private String phone3;
 	private String email;
-	private String zipCode;
 	private String residence;
 	private String job;
 	private boolean married;
 	private String academic;
 	private int income;
 	private String wallet;
+	private boolean confirm;
 	private Timestamp regDate;
+
+	public boolean isConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(boolean confirm) {
+		this.confirm = confirm;
+	}
 
 	public int getNo() {
 		return no;
@@ -44,6 +52,22 @@ public class Member {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getBirthYear() {
+		return birthYear;
+	}
+
+	public void setBirthYear(String birthYear) {
+		this.birthYear = birthYear;
+	}
+
+	public String getBirthDay() {
+		return birthDay;
+	}
+
+	public void setBirthDay(String birthDay) {
+		this.birthDay = birthDay;
 	}
 
 	public String getGender() {
@@ -84,14 +108,6 @@ public class Member {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
 	}
 
 	public String getResidence() {
@@ -150,28 +166,12 @@ public class Member {
 		this.regDate = regDate;
 	}
 
-	public String getBirthYear() {
-		return birthYear;
-	}
-
-	public void setBirthYear(String birthYear) {
-		this.birthYear = birthYear;
-	}
-
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
 	@Override
 	public String toString() {
-		return "Member [no=" + no + ", id=" + id + ", name=" + name + ", birthYear=" + birthYear + ", birthday="
-				+ birthday + ", gender=" + gender + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
-				+ ", email=" + email + ", zipCode=" + zipCode + ", residence=" + residence + ", job=" + job
-				+ ", married=" + married + ", academic=" + academic + ", income=" + income + ", wallet=" + wallet
+		return "Member [no=" + no + ", id=" + id + ", name=" + name + ", birthYear=" + birthYear + ", birthDay="
+				+ birthDay + ", gender=" + gender + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
+				+ ", email=" + email + ", residence=" + residence + ", job=" + job + ", married=" + married
+				+ ", academic=" + academic + ", income=" + income + ", wallet=" + wallet + ", confirm=" + confirm
 				+ ", regDate=" + regDate + "]";
 	}
 }

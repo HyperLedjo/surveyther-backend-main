@@ -15,23 +15,22 @@ public class MemberService {
 	public MemberService(MemberDAO memberDAO) {
 		this.memberDAO = memberDAO;
 	}
-	
+
 	public int putMember(Member member) {
 		return memberDAO.putMember(member);
+	}
+
+	public int postMember(Member member) {
+		return memberDAO.postMember(member);
 	}
 	
 	public Member getMember(String id) {
 		return memberDAO.getMember(id);
 	}
-	
+
 	public List<Member> getMemberList() {
-		// TODO Auto-generated method stub
 		return memberDAO.getMemberList();
 	}
 
-	public void postMember(Member member) {
-		// TODO Auto-generated method stub
-		memberDAO.postMember(member);
-	}
 
 }
