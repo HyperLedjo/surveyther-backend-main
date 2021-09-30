@@ -4,33 +4,53 @@
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.SurveyDAO">
 
-	<update id="putMember"
-		parameterType="com.hyperledjo.surveyther.DTO.Member">
-		UPDATE MEMBER SET name=#{name}, birthYear=#{birthYear},
-		phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3},
-		residence=#{residence}, job=#{job}, married=#{married},
-		academic=#{academic}, income=#{income}, confirm=#{confirm}
-		WHERE id=#{id}
+	<update id="closeSurvey" parameterType="Integer">
+		UPDATE SURVEY SET
+		status=1 WHERE no=#{no}
 	</update>
 
-	<insert id="postMember"
-		parameterType="com.hyperledjo.surveyther.DTO.Member">
-		INSERT INTO MEMBER(id, email, birthDay, gender,
-		regDate)
-		VALUES(#{id}, #{email}, #{birthDay}, #{gender},
-		now())
+	<!-- 서베이를 DB에 등록한 후에 세션별로 가장 최근에 입력한 서베이의 PK를 찾습니다. 찾은 PK는 서비스에서 모델의 getter를 
+		통해 가져올 수 있습니다. -->
+	<insert id="postSurvey"
+		parameterType="com.hyperledjo.surveyther.DTO.Survey">
+		INSERT INTO SURVEY(memberId, category, title, content,
+		goalParticipants, regDate, deadline, status)
+		VALUES(#{memberId},
+		#{category}, #{title}, #{content}, #{goalParticipants}, now(),
+		#{deadline}, 0)
+		<selectKey keyProperty="no" resultType="Integer"
+			order="AFTER">
+			SELECT
+			LAST_INSERT_ID() as no
+		</selectKey>
 	</insert>
 
-	<select id="getMember"
-		resultType="com.hyperledjo.surveyther.DTO.Member"
-		parameterType="String">
-		SELECT * FROM MEMBER WHERE id=#{id}
+	<select id="getClosedSurvey"
+		resultType="com.hyperledjo.surveyther.DTO.Survey">
+		SELECT * FROM Survey WHERE status=1
 	</select>
 
-	<select id="getMemberList"
-		resultType="com.hyperledjo.surveyther.DTO.Member">
+	<select id="getOnGoingSurvey"
+		resultType="com.hyperledjo.surveyther.DTO.Survey">
+		SELECT * FROM Survey WHERE status=0
+	</select>
+
+	<select id="getMySurvey"
+		resultType="com.hyperledjo.surveyther.DTO.Survey"
+		parameterType="Integer">
+		SELECT * FROM Survey WHERE memberId=#{memberId}
+	</select>
+
+	<select id="getSurvey"
+		resultType="com.hyperledjo.surveyther.DTO.Survey"
+		parameterType="Integer">
+		SELECT * FROM Survey WHERE no=#{no}
+	</select>
+
+	<select id="getSurveyList"
+		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT *
 		FROM
-		MEMBER
+		Survey
 	</select>
 </mapper>

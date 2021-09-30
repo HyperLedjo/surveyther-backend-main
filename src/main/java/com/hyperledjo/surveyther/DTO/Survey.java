@@ -12,6 +12,7 @@ public class Survey {
 	private int goalParticipants;
 	private Timestamp regDate;
 	private Date deadline;
+	// status - 0: 진행, 1: 마감
 	private int status;
 
 	public int getNo() {
