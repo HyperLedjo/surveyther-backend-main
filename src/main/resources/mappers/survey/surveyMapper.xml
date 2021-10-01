@@ -6,7 +6,7 @@
 
 	<update id="closeSurvey" parameterType="Integer">
 		UPDATE SURVEY SET
-		status=1 WHERE no=#{no}
+		status=1 WHERE no=#{id}
 	</update>
 
 	<!-- 서베이를 DB에 등록한 후에 세션별로 가장 최근에 입력한 서베이의 PK를 찾습니다. 찾은 PK는 서비스에서 모델의 getter를 
@@ -25,26 +25,26 @@
 		</selectKey>
 	</insert>
 
-	<select id="getClosedSurvey"
+	<select id="getClosedSurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT * FROM Survey WHERE status=1
 	</select>
 
-	<select id="getOnGoingSurvey"
+	<select id="getOnGoingSurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT * FROM Survey WHERE status=0
 	</select>
 
-	<select id="getMySurvey"
+	<select id="getMySurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey"
 		parameterType="Integer">
-		SELECT * FROM Survey WHERE memberId=#{memberId}
+		SELECT * FROM Survey WHERE memberId=#{id}
 	</select>
 
 	<select id="getSurvey"
 		resultType="com.hyperledjo.surveyther.DTO.Survey"
 		parameterType="Integer">
-		SELECT * FROM Survey WHERE no=#{no}
+		SELECT * FROM Survey WHERE no=#{id}
 	</select>
 
 	<select id="getSurveyList"

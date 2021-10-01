@@ -1,9 +1,11 @@
 package com.hyperledjo.surveyther.DAO;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hyperledjo.surveyther.DTO.Category;
+import com.hyperledjo.surveyther.DTO.Survey;
 
 @Repository
 public class SurveyDAO {
@@ -13,11 +15,43 @@ public class SurveyDAO {
 	public SurveyDAO(SqlSessionTemplate sql) {
 		this.sql = sql;
 	}
-
-	public int testOnSpring(Category c) {
-		int check = sql.insert(nameSpace + ".insertTest", c);
-		System.out.println(check);
-		System.out.println(c.getNo());
-		return check;
+	
+//	public List<Survey> searchSurvey(String search) {
+//		
+//	}
+	
+	public int postSurvey(Survey survey) {
+		
+		int result = sql.insert(nameSpace + ".postSurvey", survey);
+		if(result < 1) {
+			return 0;
+		}
+		return survey.getNo();
+	}
+	
+	public int closeSurvey(int id) {
+		return sql.update(nameSpace + ".closeSurvey", id);
+	}
+	
+	// status가 1인 서베이 목록 조회
+	public List<Survey> getClosedSurveyList() {
+		return sql.selectList(nameSpace + ".getClosedSurveyList");
+	}
+	
+	// status가 0인 서베이 목록 조회
+	public List<Survey> getOnGoingSurveyList() {
+		return sql.selectList(nameSpace + ".getOnGoingSurveyList");
+	}
+	
+	public List<Survey> getMySurveyList(int id) {
+		return sql.selectList(nameSpace + ".getMySurveyList", id);
+	}
+	
+	public Survey getSurvey(int id) {
+		return sql.selectOne(nameSpace + ".getSurvey", id);
+	}
+	
+	public List<Survey> getSurveyList() {
+		return sql.selectList(nameSpace + ".getSurveyList");
 	}
 }

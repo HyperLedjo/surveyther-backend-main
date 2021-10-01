@@ -1,11 +1,13 @@
 package com.hyperledjo.surveyther.Controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyperledjo.surveyther.DTO.Category;
+import com.hyperledjo.surveyther.DTO.Survey;
 import com.hyperledjo.surveyther.Service.SurveyService;
 
 @RestController
@@ -17,10 +19,14 @@ public class SurveyController {
 	public SurveyController(SurveyService surveyService) {
 		this.surveyService = surveyService;
 	}
-
-	@PostMapping("/test")
-	public int testOnSpring(@RequestBody Category c) {
-		return surveyService.testOnSpring(c); 
+	
+	@GetMapping("/survey/{id}")
+	public Survey getSurvey(@PathVariable("id") int id) {
+		return null;
 	}
-
+	
+	@GetMapping("/survey")
+	public List<Survey> getSurveyList() {
+		return null;
+	}
 }
