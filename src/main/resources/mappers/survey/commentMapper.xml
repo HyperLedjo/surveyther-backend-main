@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 좋아요(Like) 서비스에 해당하는 기능을 위한 SQL 매퍼 -->
+<mapper namespace="com.hyperledjo.surveyther.DAO.CommentDAO">
+
+	<!-- 좋아요 서비스에 정의된 기능은 좋아요 조회, 집계, 표시, 제거 -->
+	<!-- 각 기능에 필요한 메소드는 GET, GET, POST, DELETE -->
+
+	<update id="putComment"
+	parameterType="com.hyperledjo.surveyther.DTO.Comment">
+		UPDATE COMMENT SET
+		comment=#{comment} WHERE no=#{no}
+	</update>
+
+	<delete id="deleteComment" parameterType="Integer">
+		DELETE FROM COMMENT
+		WHERE no=#{id}
+	</delete>
+
+	<insert id="postComment"
+		parameterType="com.hyperledjo.surveyther.DTO.Comment">
+		INSERT INTO COMMENT(memberId, surveyId, content,
+		regDate) VALUES(#{memberId}, #{surveyId}, #{content}, now())
+	</insert>
+
+	<select id="getCommentCount" resultType="Integer">
+		SELECT count(*) FROM
+		COMMNET WHERE surveyId=#{id}
+	</select>
+
+	<select id="getLike"
+		resultType="com.hyperledjo.surveyther.DTO.Comment"
+		parameterType="Integer">
+		SELECT * FROM COMMENT WHERE no=#{id}
+	</select>
+
+	<select id="getCommentList"
+		resultType="com.hyperledjo.surveyther.DTO.Comment">
+		SELECT *
+		FROM
+		COMMENT
+	</select>
+</mapper>
