@@ -3,6 +3,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.QuestionDAO">
+	<insert id="postQuestion"
+		parameterType="com.hyperledjo.surveyther.DTO.Question">
+		INSERT INTO QUESTION(surveyId, content) VALUES (#{surveyId},
+		#{content})
+		<selectKey keyProperty="no" resultType="Integer"
+			order="AFTER">
+			SELECT
+			LAST_INSERT_ID() as no
+		</selectKey>
+	</insert>
 
-	
+	<select id="getQuestionsFromSurvey" parameterType="Integer">
+		SELECT * FROM
+		QUESTION WHERE surveyId=#{id}
+	</select>
+
+	<select id="getQuestionList">
+		SELECT * FROM QUESTION
+	</select>
 </mapper>

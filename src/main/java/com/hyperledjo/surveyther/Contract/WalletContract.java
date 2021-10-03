@@ -1,6 +1,6 @@
 package com.hyperledjo.surveyther.Contract;
 
-public class Wallet {
+public class WalletContract {
 	public String getWallet() {
 		return null;
 	}
