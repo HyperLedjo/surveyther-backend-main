@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyperledjo.surveyther.DAO.ShopDAO">
+	<select id="getShop" parameterType="String" resultType="Integer">
+		SELECT #{no} FROM SHOP WHERE name=#{name}
+	</select>
+	<select id="getShopList" resultType="com.hyperledjo.surveyther.DTO.Shop">
+		SELECT * FROM SHOP
+	</select>
+</mapper>
