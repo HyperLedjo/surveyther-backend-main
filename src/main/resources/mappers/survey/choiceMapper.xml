@@ -3,6 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.ChoiceDAO">
+
 	<insert id="postChoice"
 		parameterType="com.hyperledjo.surveyther.DTO.Choice">
 		INSERT INTO CHOICE(questionId) VALUES (#{questionId})

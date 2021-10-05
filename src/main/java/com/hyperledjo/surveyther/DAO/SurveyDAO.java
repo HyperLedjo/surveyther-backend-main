@@ -21,10 +21,13 @@ public class SurveyDAO {
 //	}
 	
 	public int postSurvey(Survey survey) {
-		
-		int result = sql.insert(nameSpace + ".postSurvey", survey);
-		if(result < 1) {
+		try { 
+			sql.insert(nameSpace + ".postMember", survey);	
+		} catch (Exception e) {
+			e.printStackTrace();
 			return 0;
+		} finally {
+			System.out.println("[POST]" + survey.toString());
 		}
 		return survey.getNo();
 	}

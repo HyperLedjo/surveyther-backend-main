@@ -18,7 +18,15 @@ public class AnswerDAO {
 	}
 	
 	public int postAnswer(Answer answer) {
-		return sql.insert(nameSpace + ".postAnswer", answer);
+		try { 
+			sql.insert(nameSpace + ".postMember", answer);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			System.out.println("[POST]" + answer.toString());
+		}
+		return 1;
 	}
 	
 	public List<Answer> getAnswersFromSurvey(int id) {

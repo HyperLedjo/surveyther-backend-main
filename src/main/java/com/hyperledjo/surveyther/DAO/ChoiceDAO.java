@@ -20,15 +20,15 @@ public class ChoiceDAO {
 
 	// Choice 등록
 	public int postChoice(Choice choice) {
-		// Choice DTO에 필요한 데이터를 담아 DB에 INSERT함
-		// 실패시 0, 성공시 1 이상의 값을 반환
-		int result = sql.insert(nameSpace + ".postChoice", choice);
-		// 이 때, Mapper에 정의된 대로 마지막으로 INSERT된 ID(PK)도 같이 반환
-		// 반환 성공시 Choice DTO에는 성공적으로 INSERT된 ROW의 ID를 getter로 불러올 수 있음
-		if (0 < result) {
-			return choice.getNo();
+		try { 
+			sql.insert(nameSpace + ".postMember", choice);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			System.out.println("[POST]" + choice.toString());
 		}
-		return result;
+		return choice.getNo();
 	}
 
 	// 서베이에 포함된 Choice를 반환

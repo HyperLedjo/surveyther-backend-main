@@ -18,11 +18,15 @@ public class QuestionDAO {
 	}
 	
 	public int postQuestion(Question question) {
-		int result = sql.insert(nameSpace + ".postQuestion", question);
-		if(0 < result) { 
-			return question.getNo();
+		try { 
+			sql.insert(nameSpace + ".postMember", question);	
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		} finally {
+			System.out.println("[POST]" + question.toString());
 		}
-		return result;
+		return question.getNo();
 	}
 	
 	public List<Question> getQuestionFromSurvey(int id) {
