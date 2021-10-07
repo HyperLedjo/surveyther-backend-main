@@ -10,10 +10,55 @@ public class Survey {
 	private String title;
 	private String content;
 	private int goalParticipants;
+	private int currentParticipants;
 	private Timestamp regDate;
 	private Date deadline;
+	private double paid;
+	private double fee;
+	private int likes;
+	private int comments;
 	// status - 0: 진행, 1: 마감
 	private int status;
+
+	public double getPaid() {
+		return paid;
+	}
+
+	public void setPaid(double paid) {
+		this.paid = paid;
+	}
+
+	public double getFee() {
+		return fee;
+	}
+
+	public void setFee(double fee) {
+		this.fee = fee;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public int getComments() {
+		return comments;
+	}
+
+	public void setComments(int comments) {
+		this.comments = comments;
+	}
+
+	public int getCurrentParticipants() {
+		return currentParticipants;
+	}
+
+	public void setCurrentParticipants(int currentParticipants) {
+		this.currentParticipants = currentParticipants;
+	}
 
 	public int getNo() {
 		return no;

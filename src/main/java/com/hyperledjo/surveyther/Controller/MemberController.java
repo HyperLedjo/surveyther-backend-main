@@ -2,6 +2,8 @@ package com.hyperledjo.surveyther.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,7 @@ import com.hyperledjo.surveyther.Service.MemberService;
 public class MemberController {
 
 	private MemberService memberService;
-
+	
 	public MemberController(MemberService memberService) {
 		this.memberService = memberService;
 	}

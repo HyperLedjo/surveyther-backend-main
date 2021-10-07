@@ -25,8 +25,8 @@ public class MemberDAO {
 	}
 
 	public int postMember(Member member) {
-		try { 
-			sql.insert(nameSpace + ".postMember", member);	
+		try {
+			sql.insert(nameSpace + ".postMember", member);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -37,8 +37,7 @@ public class MemberDAO {
 	}
 
 	public Member getMember(String id) {
-		Member member = sql.selectOne(nameSpace + ".getMember", id);
-		return member;
+		return sql.selectOne(nameSpace + ".getMember", id);
 	}
 
 	public List<Member> getMemberList() {

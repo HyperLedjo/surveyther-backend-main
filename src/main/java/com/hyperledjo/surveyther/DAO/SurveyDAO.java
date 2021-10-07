@@ -22,7 +22,7 @@ public class SurveyDAO {
 	
 	public int postSurvey(Survey survey) {
 		try { 
-			sql.insert(nameSpace + ".postMember", survey);	
+			sql.insert(nameSpace + ".postSurvey", survey);	
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;

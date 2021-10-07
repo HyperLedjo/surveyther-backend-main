@@ -14,10 +14,10 @@
 	<insert id="postSurvey"
 		parameterType="com.hyperledjo.surveyther.DTO.Survey">
 		INSERT INTO SURVEY(memberId, category, title, content,
-		goalParticipants, regDate, deadline, status)
+		goalParticipants, regDate, deadline, paid, fee, status)
 		VALUES(#{memberId},
 		#{category}, #{title}, #{content}, #{goalParticipants}, now(),
-		#{deadline}, 0)
+		#{deadline}, #{paid}, #{fee}, 0)
 		<selectKey keyProperty="no" resultType="Integer"
 			order="AFTER">
 			SELECT
