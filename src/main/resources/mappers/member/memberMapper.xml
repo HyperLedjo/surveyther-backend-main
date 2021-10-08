@@ -6,7 +6,7 @@
 
 	<update id="putMember"
 		parameterType="com.hyperledjo.surveyther.DTO.Member">
-		UPDATE MEMBER SET name=#{name}, birthYear=#{birthYear},
+		UPDATE member SET name=#{name}, birthYear=#{birthYear},
 		phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3},
 		residence=#{residence}, job=#{job}, married=#{married},
 		academic=#{academic}, income=#{income}, confirm=#{confirm}
@@ -15,7 +15,7 @@
 
 	<insert id="postMember"
 		parameterType="com.hyperledjo.surveyther.DTO.Member">
-		INSERT INTO MEMBER(id, email, birthDay, gender,
+		INSERT INTO member(id, email, birthDay, gender,
 		regDate)
 		VALUES(#{id}, #{email}, #{birthDay}, #{gender},
 		now())
@@ -24,13 +24,13 @@
 	<select id="getMember"
 		resultType="com.hyperledjo.surveyther.DTO.Member"
 		parameterType="String">
-		SELECT * FROM MEMBER WHERE id=#{id}
+		SELECT * FROM member WHERE id=#{id}
 	</select>
 
 	<select id="getMemberList"
 		resultType="com.hyperledjo.surveyther.DTO.Member">
 		SELECT *
 		FROM
-		MEMBER
+		member
 	</select>
 </mapper>

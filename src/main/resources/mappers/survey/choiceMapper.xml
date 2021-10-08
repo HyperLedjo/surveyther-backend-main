@@ -6,7 +6,7 @@
 
 	<insert id="postChoice"
 		parameterType="com.hyperledjo.surveyther.DTO.Choice">
-		INSERT INTO CHOICE(questionId) VALUES (#{questionId})
+		INSERT INTO choice(questionId) VALUES (#{questionId})
 		<selectKey keyProperty="no" resultType="Integer"
 			order="AFTER">
 			SELECT
@@ -16,10 +16,10 @@
 
 	<select id="getChoicesFromSurvey" parameterType="Integer">
 		SELECT * FROM
-		CHOICE WHERE questionId=#{id}
+		choice WHERE questionId=#{id}
 	</select>
 
 	<select id="getChoiceList">
-		SELECT * FROM CHOICE
+		SELECT * FROM choice
 	</select>
 </mapper>

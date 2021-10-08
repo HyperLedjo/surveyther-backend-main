@@ -5,7 +5,7 @@
 <mapper namespace="com.hyperledjo.surveyther.DAO.QuestionDAO">
 	<insert id="postQuestion"
 		parameterType="com.hyperledjo.surveyther.DTO.Question">
-		INSERT INTO QUESTION(surveyId, content) VALUES (#{surveyId},
+		INSERT INTO question(surveyId, content) VALUES (#{surveyId},
 		#{content})
 		<selectKey keyProperty="no" resultType="Integer"
 			order="AFTER">
@@ -16,10 +16,10 @@
 
 	<select id="getQuestionsFromSurvey" parameterType="Integer">
 		SELECT * FROM
-		QUESTION WHERE surveyId=#{id}
+		question WHERE surveyId=#{id}
 	</select>
 
 	<select id="getQuestionList">
-		SELECT * FROM QUESTION
+		SELECT * FROM question
 	</select>
 </mapper>

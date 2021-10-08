@@ -5,13 +5,13 @@
 <mapper namespace="com.hyperledjo.surveyther.DAO.TagDAO">
 
 	<delete id="deleteTag" parameterType="Integer">
-		DELETE FROM TAG WHERE
+		DELETE FROM tag WHERE
 		no=#{id}
 	</delete>
 
 	<update id="putTag"
 		parameterType="com.hyperledjo.surveyther.DTO.Tag">
-		UPDATE TAG SET content=#{content}
+		UPDATE tag SET content=#{content}
 		WHERE
 		no=#{no} AND
 		surveyId=#{id}
@@ -19,7 +19,7 @@
 
 	<insert id="postTag"
 		parameterType="com.hyperledjo.surveyther.DTO.Tag">
-		INSERT INTO TAG(surveyId, content)
+		INSERT INTO tag(surveyId, content)
 		VALUES(#{surveyId},
 		#{content})
 	</insert>
@@ -28,7 +28,7 @@
 		resultType="com.hyperledjo.surveyther.DTO.Tag">
 		SELECT *
 		FROM
-		TAG
+		tag
 		WHERE surveyId=#{id}
 	</select>
 </mapper>

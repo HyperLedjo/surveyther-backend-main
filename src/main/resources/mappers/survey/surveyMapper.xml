@@ -5,7 +5,7 @@
 <mapper namespace="com.hyperledjo.surveyther.DAO.SurveyDAO">
 
 	<update id="closeSurvey" parameterType="Integer">
-		UPDATE SURVEY SET
+		UPDATE survey SET
 		status=1 WHERE no=#{id}
 	</update>
 
@@ -13,7 +13,7 @@
 		통해 가져올 수 있습니다. -->
 	<insert id="postSurvey"
 		parameterType="com.hyperledjo.surveyther.DTO.Survey">
-		INSERT INTO SURVEY(memberId, category, title, content,
+		INSERT INTO survey(memberId, category, title, content,
 		goalParticipants, regDate, deadline, paid, fee, status)
 		VALUES(#{memberId},
 		#{category}, #{title}, #{content}, #{goalParticipants}, now(),
@@ -27,30 +27,30 @@
 
 	<select id="getClosedSurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
-		SELECT * FROM Survey WHERE status=1
+		SELECT * FROM survey WHERE status=1
 	</select>
 
 	<select id="getOnGoingSurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
-		SELECT * FROM Survey WHERE status=0
+		SELECT * FROM survey WHERE status=0
 	</select>
 
 	<select id="getMySurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey"
 		parameterType="Integer">
-		SELECT * FROM Survey WHERE memberId=#{id}
+		SELECT * FROM survey WHERE memberId=#{id}
 	</select>
 
 	<select id="getSurvey"
 		resultType="com.hyperledjo.surveyther.DTO.Survey"
 		parameterType="Integer">
-		SELECT * FROM Survey WHERE no=#{id}
+		SELECT * FROM survey WHERE no=#{id}
 	</select>
 
 	<select id="getSurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT *
 		FROM
-		Survey
+		survey
 	</select>
 </mapper>
