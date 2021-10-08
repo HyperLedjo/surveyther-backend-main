@@ -23,37 +23,42 @@ public class SurveyController {
 	public SurveyController(SurveyService surveyService) {
 		this.surveyService = surveyService;
 	}
-	
+
+	@Scheduled(cron="0 44 17 * * *")
+	public void cronTest() {
+		System.out.println("test!2");
+	}
+
 	@PostMapping("/survey")
 	public int postSurvey(@RequestBody Survey survey) {
 		return surveyService.postSurvey(survey);
 	}
-	
+
 	@PatchMapping("/survey/{id}")
 	public Survey closeSurvey(@PathVariable("id") int id) {
 		return surveyService.closeSurvey(id);
 	}
-	
+
 	@GetMapping("/survey/closed")
 	public List<Survey> getClosedSurveyList() {
 		return surveyService.getClosedSurveyList();
 	}
-	
+
 	@GetMapping("/survey/ongoing")
 	public List<Survey> getOnGoinSurveyList() {
 		return surveyService.getOnGoingSurveyList();
 	}
-	
+
 	@GetMapping("/survey/my/{id}")
 	public List<Survey> getMySurveyList(@PathVariable("id") int id) {
 		return surveyService.getMySurveyList(id);
 	}
-	
+
 	@GetMapping("/survey/{id}")
 	public Survey getSurvey(@PathVariable("id") int id) {
 		return surveyService.getSurvey(id);
 	}
-	
+
 	@GetMapping("/survey")
 	public List<Survey> getSurveyList() {
 		return surveyService.getSurveyList();
