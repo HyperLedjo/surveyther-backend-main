@@ -32,7 +32,7 @@ public class SurveyDAO {
 		return survey.getNo();
 	}
 
-	public int closeSurvey(int id) {
+	public int closeSurvey(int id) { 
 		return sql.update(nameSpace + ".closeSurvey", id);
 	}
 
