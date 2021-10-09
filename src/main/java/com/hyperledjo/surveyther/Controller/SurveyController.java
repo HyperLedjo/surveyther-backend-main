@@ -2,7 +2,6 @@ package com.hyperledjo.surveyther.Controller;
 
 import java.util.List;
 
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hyperledjo.surveyther.DTO.Category;
 import com.hyperledjo.surveyther.DTO.Survey;
+import com.hyperledjo.surveyther.Service.CategoryService;
 import com.hyperledjo.surveyther.Service.SurveyService;
 
 @RestController
@@ -19,21 +20,21 @@ import com.hyperledjo.surveyther.Service.SurveyService;
 public class SurveyController {
 
 	private SurveyService surveyService;
+	private CategoryService categoryService;
 
-	public SurveyController(SurveyService surveyService) {
+	public SurveyController(SurveyService surveyService, CategoryService categoryService) {
 		this.surveyService = surveyService;
+		this.categoryService = categoryService;
 	}
 
-	@Scheduled(cron="0 44 17 * * *")
-	public void cronTest() {
-		System.out.println("test!2");
-	}
-
+	// 서베이 등록
+	//
 	@PostMapping("/survey")
 	public int postSurvey(@RequestBody Survey survey) {
 		return surveyService.postSurvey(survey);
 	}
 
+	//
 	@PatchMapping("/survey/{id}")
 	public Survey closeSurvey(@PathVariable("id") int id) {
 		return surveyService.closeSurvey(id);
@@ -52,6 +53,21 @@ public class SurveyController {
 	@GetMapping("/survey/my/{id}")
 	public List<Survey> getMySurveyList(@PathVariable("id") int id) {
 		return surveyService.getMySurveyList(id);
+	}
+
+	@GetMapping("/survey/category/{name}")
+	public List<Survey> getCategorySurveyList(@PathVariable("name") String name) {
+		
+		List<Category> categories = categoryService.getCategoryList();
+		
+		int id = 0;
+		for(Category category : categories) {
+			if(name.equals(category.getName())) {
+				id = category.getNo();
+			}
+		}
+		
+		return surveyService.getCategorySurveyList(id);
 	}
 
 	@GetMapping("/survey/{id}")

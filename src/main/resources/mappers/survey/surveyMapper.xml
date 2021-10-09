@@ -41,6 +41,12 @@
 		SELECT * FROM survey WHERE memberId=#{id}
 	</select>
 
+	<select id="getCategorySurveyList"
+		resultType="com.hyperledjo.surveyther.DTO.Survey"
+		parameterType="Integer">
+		SELECT * FROM survey WHERE category=#{id}
+	</select>
+
 	<select id="getSurvey"
 		resultType="com.hyperledjo.surveyther.DTO.Survey"
 		parameterType="Integer">

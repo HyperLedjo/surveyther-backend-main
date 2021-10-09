@@ -41,6 +41,10 @@ public class SurveyService {
 		return surveyDAO.getMySurveyList(id);
 	}
 	
+	public List<Survey> getCategorySurveyList(int id) {
+		return surveyDAO.getCategorySurveyList(id);
+	}
+	
 	public Survey getSurvey(int id) {
 		return surveyDAO.getSurvey(id);
 	}
