@@ -22,8 +22,13 @@ public class ChoiceController {
 	}
 	
 	@PostMapping("/choice")
-	public int postChoice(@RequestBody Choice choice) {
-		return choiceService.postChoice(choice);
+	public List<Choice> postChoice(@RequestBody List<Choice> choices) {
+		if(choices.isEmpty()) return null;
+		
+		for(Choice choice : choices) {
+			choiceService.postChoice(choice);
+		}
+		return choices;
 	}
 	
 	@GetMapping("/choice/{id}")

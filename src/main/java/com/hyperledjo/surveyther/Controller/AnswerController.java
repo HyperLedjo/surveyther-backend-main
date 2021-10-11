@@ -22,8 +22,15 @@ public class AnswerController {
 	}
 	
 	@PostMapping("/answer") 
-	public int postAnswer(@RequestBody Answer answer) {
-		return answerService.postAnswer(answer);
+	public int postAnswer(@RequestBody List<Answer> answers) {
+		if(answers.isEmpty()) return -1;
+		for(Answer answer : answers) {
+			int result = answerService.postAnswer(answer);
+			if(result < 1) {
+				return 0;
+			}
+		}
+		return 1;
 	}
 	
 	@GetMapping("/answer/{id}")
