@@ -10,12 +10,14 @@
 		#{content})
 	</insert>
 
-	<select id="getAnswersFromSurvey" parameterType="Integer">
+	<select id="getAnswersFromSurvey" parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Answer">
 		SELECT * FROM
 		answer WHERE choiceId=#{id}
 	</select>
 
-	<select id="getAnswerList">
+	<select id="getAnswerList"
+		resultType="com.hyperledjo.surveyther.DTO.Answer">
 		SELECT * FROM answer
 	</select>
 </mapper>

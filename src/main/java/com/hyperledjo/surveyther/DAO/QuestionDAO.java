@@ -19,7 +19,7 @@ public class QuestionDAO {
 	
 	public int postQuestion(Question question) {
 		try { 
-			sql.insert(nameSpace + ".postMember", question);	
+			sql.insert(nameSpace + ".postQuestion", question);	
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;

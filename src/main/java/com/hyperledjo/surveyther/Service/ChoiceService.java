@@ -16,7 +16,9 @@ public class ChoiceService {
 		this.choiceDAO = choiceDAO;
 	}
 	
-	
+	public int postChoice(Choice choice) {
+		return choiceDAO.postChoice(choice);
+	}
 	
 	public List<Choice> getChoicesFromSurvey(int id) {
 		return choiceDAO.getChoicesFromSurvey(id);

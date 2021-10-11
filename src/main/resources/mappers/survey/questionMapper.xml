@@ -14,12 +14,14 @@
 		</selectKey>
 	</insert>
 
-	<select id="getQuestionsFromSurvey" parameterType="Integer">
+	<select id="getQuestionsFromSurvey" parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Question">
 		SELECT * FROM
 		question WHERE surveyId=#{id}
 	</select>
 
-	<select id="getQuestionList">
+	<select id="getQuestionList"
+		resultType="com.hyperledjo.surveyther.DTO.Question">
 		SELECT * FROM question
 	</select>
 </mapper>

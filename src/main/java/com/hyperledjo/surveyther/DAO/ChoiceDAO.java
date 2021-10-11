@@ -21,7 +21,7 @@ public class ChoiceDAO {
 	// Choice 등록
 	public int postChoice(Choice choice) {
 		try { 
-			sql.insert(nameSpace + ".postMember", choice);	
+			sql.insert(nameSpace + ".postChoice", choice);	
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
