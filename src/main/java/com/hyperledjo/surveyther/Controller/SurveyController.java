@@ -10,9 +10,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hyperledjo.surveyther.DTO.Answer;
 import com.hyperledjo.surveyther.DTO.Category;
+import com.hyperledjo.surveyther.DTO.Choice;
+import com.hyperledjo.surveyther.DTO.Question;
 import com.hyperledjo.surveyther.DTO.Survey;
+import com.hyperledjo.surveyther.Service.AnswerService;
 import com.hyperledjo.surveyther.Service.CategoryService;
+import com.hyperledjo.surveyther.Service.ChoiceService;
+import com.hyperledjo.surveyther.Service.QuestionService;
 import com.hyperledjo.surveyther.Service.SurveyService;
 
 @RestController
@@ -27,8 +33,6 @@ public class SurveyController {
 		this.categoryService = categoryService;
 	}
 
-	// 서베이 등록
-	//
 	@PostMapping("/survey")
 	public int postSurvey(@RequestBody Survey survey) {
 		return surveyService.postSurvey(survey);
@@ -57,16 +61,16 @@ public class SurveyController {
 
 	@GetMapping("/survey/category/{name}")
 	public List<Survey> getCategorySurveyList(@PathVariable("name") String name) {
-		
+
 		List<Category> categories = categoryService.getCategoryList();
-		
+
 		int id = 0;
-		for(Category category : categories) {
-			if(name.equals(category.getName())) {
+		for (Category category : categories) {
+			if (name.equals(category.getName())) {
 				id = category.getNo();
 			}
 		}
-		
+
 		return surveyService.getCategorySurveyList(id);
 	}
 
