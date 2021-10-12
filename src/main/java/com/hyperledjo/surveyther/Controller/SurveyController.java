@@ -10,15 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyperledjo.surveyther.DTO.Answer;
 import com.hyperledjo.surveyther.DTO.Category;
-import com.hyperledjo.surveyther.DTO.Choice;
-import com.hyperledjo.surveyther.DTO.Question;
 import com.hyperledjo.surveyther.DTO.Survey;
-import com.hyperledjo.surveyther.Service.AnswerService;
 import com.hyperledjo.surveyther.Service.CategoryService;
-import com.hyperledjo.surveyther.Service.ChoiceService;
-import com.hyperledjo.surveyther.Service.QuestionService;
 import com.hyperledjo.surveyther.Service.SurveyService;
 
 @RestController

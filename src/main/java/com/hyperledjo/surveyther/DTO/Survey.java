@@ -6,34 +6,6 @@ import java.util.List;
 
 public class Survey {
 
-	private List<Question> questions;
-	private List<Choice> choices;
-	private List<Answer> answers;
-
-	public List<Question> getQuestions() {
-		return questions;
-	}
-
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
-	}
-
-	public List<Choice> getChoices() {
-		return choices;
-	}
-
-	public void setChoices(List<Choice> choices) {
-		this.choices = choices;
-	}
-
-	public List<Answer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
-	}
-
 	private int no;
 	private int memberId;
 	private int category;

@@ -2,12 +2,12 @@ package com.hyperledjo.surveyther.DTO;
 
 public class Answer {
 	private int no;
-	private int choiceId;
+	private int questionId;
 	private String content;
 
 	@Override
 	public String toString() {
-		return "Answer [no=" + no + ", choiceId=" + choiceId + ", content=" + content + "]";
+		return "Answer [no=" + no + ", questionId=" + questionId + ", content=" + content + "]";
 	}
 
 	public int getNo() {
@@ -18,12 +18,12 @@ public class Answer {
 		this.no = no;
 	}
 
-	public int getChoiceId() {
-		return choiceId;
+	public int getQuestionId() {
+		return questionId;
 	}
 
-	public void setChoiceId(int choiceId) {
-		this.choiceId = choiceId;
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
 	}
 
 	public String getContent() {
