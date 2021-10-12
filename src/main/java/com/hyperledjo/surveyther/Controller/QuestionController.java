@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hyperledjo.surveyther.DTO.Question;
-import com.hyperledjo.surveyther.DTO.Test;
 import com.hyperledjo.surveyther.Service.QuestionService;
 
 @RestController
