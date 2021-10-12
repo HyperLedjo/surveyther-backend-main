@@ -30,8 +30,6 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
-		} finally {
-			System.out.println("[postMember]" + member.toString());
 		}
 		return 1;
 	}

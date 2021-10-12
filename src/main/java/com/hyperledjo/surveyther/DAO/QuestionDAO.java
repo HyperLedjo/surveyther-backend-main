@@ -23,8 +23,6 @@ public class QuestionDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
-		} finally {
-			System.out.println("[POST]" + question.toString());
 		}
 		return question.getNo();
 	}

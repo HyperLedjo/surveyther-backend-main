@@ -26,8 +26,6 @@ public class SurveyDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
-		} finally {
-			System.out.println("[POST]" + survey.toString());
 		}
 		return survey.getNo();
 	}

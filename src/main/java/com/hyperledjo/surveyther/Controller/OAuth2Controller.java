@@ -33,7 +33,6 @@ public class OAuth2Controller {
 	public Member getMember() {
 		Member member = (Member) httpSession.getAttribute("member");
 		if (member != null) {
-			System.out.println("[GET /oauth2/me] " + member.toString());
 			return member;
 		}
 		return null;
@@ -55,18 +54,13 @@ public class OAuth2Controller {
 	@GetMapping("/login")
 	public void login(@RequestParam("code") String code, HttpServletResponse response) throws IOException {
 		Member member = new Member();
-		System.out.println("[GET /oauth/login] Code: " + code);
+		
 		JsonNode jsonNode = oAuth2Service.login(code);
-
-		System.out.println("[GET /oauth/login] JsonNode: " + jsonNode);
 		String token = jsonNode.get("access_token").toString();
-
-		System.out.println("[GET /oauth/login] Token: " + token);
 
 		jsonNode = oAuth2Service.getUser(token);
 		String id = jsonNode.get("id").toString();
 		
-
 		JsonNode kakaoAccount = jsonNode.get("kakao_account");
 		String email = kakaoAccount.get("email").asText();
 		String birthday = kakaoAccount.get("birthday").asText();
@@ -77,9 +71,6 @@ public class OAuth2Controller {
 		member.setBirthDay(birthday);
 		member.setGender(gender);
 		httpSession.setAttribute("member", member);
-		System.out.println("[GET /oauth/login] UserInfo: " + member.toString());
-
-//		oAuth2Service.regUser(member);
 
 		response.sendRedirect("http://localhost:8081");
 	}

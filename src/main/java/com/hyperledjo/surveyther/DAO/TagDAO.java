@@ -31,8 +31,6 @@ public class TagDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
-		} finally {
-			System.out.println("[POST]" + tag.toString());
 		}
 		return 1;
 	} 
