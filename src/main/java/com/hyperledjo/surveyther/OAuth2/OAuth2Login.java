@@ -18,19 +18,22 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyperledjo.surveyther.Config.KeyConfig;
+import com.hyperledjo.surveyther.Config.UrlConfig;
 
 @Component
 public class OAuth2Login {
 
 	private KeyConfig keyConfig;
+	private UrlConfig urlConfig;
 
-	public OAuth2Login(KeyConfig keyConfig) {
+	public OAuth2Login(KeyConfig keyConfig, UrlConfig urlConfig) {
 		this.keyConfig = keyConfig;
+		this.urlConfig = urlConfig;
 	}
 
 	public JsonNode getUser(String token) {
 
-		final String requestURL = "https://kapi.kakao.com/v2/user/me";
+		final String requestURL = urlConfig.getUserMeUrl();
 		final HttpClient client = HttpClientBuilder.create().build();
 		final HttpPost post = new HttpPost(requestURL);
 
@@ -55,13 +58,14 @@ public class OAuth2Login {
 	}
 
 	public JsonNode getToken(String code) {
-		final String requestURL = "https://kauth.kakao.com/oauth/token";
+		final String requestURL = urlConfig.getOauthTokenUrl();
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		System.out.println(keyConfig.getRestApiKey());
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		postParams.add(new BasicNameValuePair("client_id", keyConfig.getRestApiKey()));
-		// postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8082/oauth2/login"));
-		postParams.add(new BasicNameValuePair("redirect_uri", "http://ec2-3-36-111-77.ap-northeast-2.compute.amazonaws.com:8082/oauth2/login"));
+		// postParams.add(new BasicNameValuePair("redirect_uri",
+		// "http://localhost:8082/oauth2/login"));
+		postParams.add(new BasicNameValuePair("redirect_uri", urlConfig.getBackendUrl() + "/oauth2/login"));
 		postParams.add(new BasicNameValuePair("code", code));
 		postParams.add(new BasicNameValuePair("client_secret", keyConfig.getClientSecretKey()));
 

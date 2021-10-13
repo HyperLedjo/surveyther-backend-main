@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.hyperledjo.surveyther.Config.UrlConfig;
 import com.hyperledjo.surveyther.DTO.Member;
 import com.hyperledjo.surveyther.Service.OAuth2Service;
 
@@ -20,10 +21,12 @@ public class OAuth2Controller {
 
 	private OAuth2Service oAuth2Service;
 	private HttpSession httpSession;
+	private UrlConfig urlConfig;
 
-	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession) {
+	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession, UrlConfig urlConfig) {
 		this.oAuth2Service = oAuth2Service;
 		this.httpSession = httpSession;
+		this.urlConfig = urlConfig;
 	}
 
 	/*
@@ -44,7 +47,7 @@ public class OAuth2Controller {
 	@GetMapping("/logout")
 	public void logout(HttpServletResponse response) throws IOException {
 		httpSession.invalidate();
-		response.sendRedirect("http://122.46.24.212:8081");
+		response.sendRedirect(urlConfig.getFrontendUrl());
 		// response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 
@@ -55,13 +58,13 @@ public class OAuth2Controller {
 	@GetMapping("/login")
 	public void login(@RequestParam("code") String code, HttpServletResponse response) throws IOException {
 		Member member = new Member();
-		
+
 		JsonNode jsonNode = oAuth2Service.login(code);
 		String token = jsonNode.get("access_token").toString();
 
 		jsonNode = oAuth2Service.getUser(token);
 		String id = jsonNode.get("id").toString();
-		
+
 		JsonNode kakaoAccount = jsonNode.get("kakao_account");
 		String email = kakaoAccount.get("email").asText();
 		String birthday = kakaoAccount.get("birthday").asText();
@@ -73,7 +76,7 @@ public class OAuth2Controller {
 		member.setGender(gender);
 		httpSession.setAttribute("member", member);
 
-		response.sendRedirect("http://122.46.24.212:8081");
+		response.sendRedirect(urlConfig.getFrontendUrl());
 		// response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 }

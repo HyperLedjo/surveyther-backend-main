@@ -8,16 +8,25 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hyperledjo.surveyther.Config.UrlConfig;
 
+@Component
 public class OAuth2Logout {
 
+	private UrlConfig urlConfig;
+	
+	public OAuth2Logout(UrlConfig urlConfig) {
+		this.urlConfig = urlConfig;
+	}
+	
 	public JsonNode logout(String code) {
 		JsonNode jsonNode = null;
 
-		final String requestURL = "https://kapi.kakao.com/v1/user/logout";
+		final String requestURL = urlConfig.getUserLogoutUrl();
 		final HttpClient client = HttpClientBuilder.create().build();
 		final HttpPost post = new HttpPost(requestURL);
 
