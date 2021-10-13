@@ -44,7 +44,8 @@ public class OAuth2Controller {
 	@GetMapping("/logout")
 	public void logout(HttpServletResponse response) throws IOException {
 		httpSession.invalidate();
-		response.sendRedirect("http://localhost:8081");
+		// response.sendRedirect("http://localhost:8081");
+		response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 
 	/*
@@ -72,6 +73,7 @@ public class OAuth2Controller {
 		member.setGender(gender);
 		httpSession.setAttribute("member", member);
 
-		response.sendRedirect("http://localhost:8081");
+		// response.sendRedirect("http://localhost:8081");
+		response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 }
