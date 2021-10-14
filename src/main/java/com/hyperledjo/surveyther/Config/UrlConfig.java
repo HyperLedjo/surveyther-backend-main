@@ -20,6 +20,20 @@ public class UrlConfig {
 	@Value("{user.logout.url}")
 	private String userLogoutUrl;
 
+	@Value("{payment.ready.url}")
+	private String paymentReadyUrl;
+
+	@Value("{payment.approve.url}")
+	private String paymentApproveUrl;
+
+	public String getPaymentApproveUrl() {
+		return paymentApproveUrl;
+	}
+
+	public String getPaymentReadyUrl() {
+		return paymentReadyUrl;
+	}
+
 	public String getFrontendUrl() {
 		return frontendUrl;
 	}
