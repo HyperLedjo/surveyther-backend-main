@@ -5,10 +5,10 @@
 
 ## Our team
 
-- 김한결 PM(Full Stack, Team Leader)
-- 양성희 PL(Full Stack, Smart Contract)
-- 박병규 IM(Backend, Ethereum Network) 
-- 김소망 RM(Frontend)
+- 김한결 (Backend Developer, Team Leader)
+- 양성희 (Frontend Developer)
+- 박병규 (Solidity Developer) 
+- 김소망 (Technical Writer)
 
 ## Requirements
 
