@@ -1,7 +1,5 @@
 package com.hyperledjo.surveyther.Controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.hyperledjo.surveyther.Config.UrlConfig;
 import com.hyperledjo.surveyther.DTO.Survey;
 import com.hyperledjo.surveyther.Service.PaymentService;
 
 @RestController
-@RequestMapping("/payment")
+@RequestMapping("/api")
 public class PaymentController {
 
 	private PaymentService paymentService;
@@ -38,15 +35,25 @@ public class PaymentController {
 	// 서베이 등록시 이용
 	@PostMapping("/sell")
 	public void sell(HttpServletResponse response) {
-		JsonNode jsonNode = paymentService.payment();
-		System.out.println(jsonNode);
-
-		try {
-			response.sendRedirect(urlConfig.getFrontendUrl());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		JsonNode jsonNode = paymentService.payment();
+//		System.out.println(jsonNode);
+//
+//		try {
+//			response.sendRedirect(urlConfig.getFrontendUrl());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
+	
+	@PostMapping("/fail")
+	public void fail() {
+		System.out.println("fail!");
+	}
+	
+	@PostMapping("/cancel")
+	public void cancel() {
+		// paymentService.cancel();
 	}
 
 	@GetMapping("/success")
@@ -54,4 +61,12 @@ public class PaymentController {
 		System.out.println(pgToken);
 	}
 
+	@PostMapping("/payment")
+	public void payment() {
+		
+		// 임시 데이터
+		int member_id = 1;
+		String survey_title = "이런 저런 문제에 관하여";
+		// String survey_
+	}
 }

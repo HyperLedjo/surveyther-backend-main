@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyperledjo.surveyther.DAO.ParticipantsDAO">
+	<insert id="postParticipants"
+		parameterType="com.hyperledjo.surveyther.DTO.Participants">
+		INSERT INTO participants(memberId, surveyId, questionId,
+		answerId, participation)
+		VALUES(#{memberId},#{surveyId},#{questionId},#{answerId},now())
+	</insert>
+
+	<select id="getParticipantsList" parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Participants">
+		SELECT * FROM participants WHERE surveyId=#{id}
+	</select>
+</mapper>

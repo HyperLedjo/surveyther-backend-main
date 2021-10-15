@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyperledjo.surveyther.Config.KeyConfig;
 import com.hyperledjo.surveyther.Config.UrlConfig;
+import com.hyperledjo.surveyther.DTO.Member;
 import com.hyperledjo.surveyther.DTO.PaymentRequest;
 
 @Service
@@ -65,20 +66,29 @@ public class PaymentService {
 		return jsonNode;
 	}
 
-	public JsonNode payment() {
+	public JsonNode ready(Member member) {
+		JsonNode jsonNode = null;
+		
+		
+		
+		return jsonNode;
+	}
+	
+	public JsonNode ready() {
 		final String requestURL = urlConfig.getPaymentReadyUrl();
-
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
-		postParams.add(new BasicNameValuePair("cid", "TC0ONETME"));
+		final String cid = "TC0ONETIME";
+		
+		postParams.add(new BasicNameValuePair("cid", cid));
 		postParams.add(new BasicNameValuePair("partner_order_id", "1111"));
 		postParams.add(new BasicNameValuePair("partner_user_id", "test"));
 		postParams.add(new BasicNameValuePair("item_name", "survey"));
 		postParams.add(new BasicNameValuePair("quantity", "1"));
 		postParams.add(new BasicNameValuePair("total_amount", "10000"));
 		postParams.add(new BasicNameValuePair("tax_free_amount", "200"));
-		postParams.add(new BasicNameValuePair("approval_url", urlConfig.getBackendUrl() + "/payment/success"));
-		postParams.add(new BasicNameValuePair("cancel_url", urlConfig.getBackendUrl() + "/payment/fail"));
-		postParams.add(new BasicNameValuePair("fail_url", urlConfig.getBackendUrl() + "/payment/cancel"));
+		postParams.add(new BasicNameValuePair("approval_url", urlConfig.getBackendUrl() + "/api/payment/success"));
+		postParams.add(new BasicNameValuePair("cancel_url", urlConfig.getBackendUrl() + "/api/payment/fail"));
+		postParams.add(new BasicNameValuePair("fail_url", urlConfig.getBackendUrl() + "/api/payment/cancel"));
 
 		final HttpClient client = HttpClientBuilder.create().build();
 		final HttpPost post = new HttpPost(requestURL);
