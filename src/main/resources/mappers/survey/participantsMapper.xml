@@ -5,7 +5,8 @@
 <mapper namespace="com.hyperledjo.surveyther.DAO.ParticipantsDAO">
 	<insert id="postParticipants"
 		parameterType="com.hyperledjo.surveyther.DTO.Participants">
-		INSERT INTO participants(memberId, surveyId, questionId,
+		INSERT INTO
+		participants(memberId, surveyId, questionId,
 		answerId, participation)
 		VALUES(#{memberId},#{surveyId},#{questionId},#{answerId},now())
 	</insert>

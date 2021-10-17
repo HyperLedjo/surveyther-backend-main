@@ -16,8 +16,14 @@ public class ParticipantsService {
 		this.participantsDAO = participantsDAO;
 	}
 	
-	public int postParticipants(Participants participants) {
-		return participantsDAO.postParticipants(participants);
+	public int postParticipants(List<Participants> participants) {
+//		return participantsDAO.postParticipants(participants);
+		if(participants.isEmpty()) return -1;
+		for(Participants p : participants) {
+			if(p == null) return 0;
+			participantsDAO.postParticipants(p);
+		}
+		return 1;
 	}
 	
 	// id is participants entitiy's id of survey(fk)

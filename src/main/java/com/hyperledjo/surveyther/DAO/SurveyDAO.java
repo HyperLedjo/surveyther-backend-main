@@ -20,6 +20,10 @@ public class SurveyDAO {
 //		
 //	}
 
+	public List<Survey> getSurveyToCloseList(String now) {
+		return sql.selectList(nameSpace + ".getSurveyToCloseList", now);
+	}
+	
 	public int postSurvey(Survey survey) {
 		try {
 			sql.insert(nameSpace + ".postSurvey", survey);

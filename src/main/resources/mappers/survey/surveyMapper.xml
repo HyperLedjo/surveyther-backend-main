@@ -4,6 +4,11 @@
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.SurveyDAO">
 
+	<select id="getSurveyToCloseList" parameterType="String"
+		resultType="com.hyperledjo.surveyther.DTO.Survey">
+		SELECT * from survey WHERE deadline=#{now}
+	</select>
+
 	<update id="closeSurvey" parameterType="Integer">
 		UPDATE survey SET
 		status=1 WHERE no=#{id}

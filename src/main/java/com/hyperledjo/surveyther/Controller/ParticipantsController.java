@@ -17,18 +17,21 @@ import com.hyperledjo.surveyther.Service.ParticipantsService;
 public class ParticipantsController {
 
 	private ParticipantsService participantsService;
-	
+
 	public ParticipantsController(ParticipantsService participantsService) {
 		// TODO Auto-generated constructor stub
 		this.participantsService = participantsService;
 	}
-	
+
 	@PostMapping("/participants")
-	public int postParticipants(@RequestBody Participants participants) {
-		return participantsService.postParticipants(participants);
+	public int postParticipants(@RequestBody List<Participants> participants) {
+		int result = participantsService.postParticipants(participants);
+		if (result < 1)
+			return -1;
+		return result;
 	}
-	
-	@GetMapping("/participants")
+
+	@GetMapping("/participants/{id}")
 	public List<Participants> getParticipantsList(@PathVariable("id") int id) {
 		return participantsService.getParticipantsList(id);
 	}
