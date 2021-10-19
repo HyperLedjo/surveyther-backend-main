@@ -17,23 +17,27 @@ public class LikeDAO {
 		this.sql = sql;
 	}
 	
-	public int dislike() {
-		return 0;
+	public int dislike(Like like) {
+		return sql.update(nameSpace + ".dislike", like);
 	}
 	
-	public int like() {
-		return 0;
+	public int like(Like like) {
+		return sql.insert(nameSpace + ".like", like);
 	}
 	
 	public int getLikedCount() {
-		return 0;
+		return sql.selectOne(nameSpace + ".getLikedCount");
 	}
 	
-	public Like getLiked() {
-		return null;
+	public Like getMyLike(Like like) {
+		return sql.selectOne(nameSpace + ".getMyLike", like);
 	}
 	
-	public List<Like> getLikedList() {
-		return null;
+	public List<Like> getLikeFromSurvey(int id) {
+		return sql.selectList(nameSpace + ".getLikeFromSurvey", id);
+	}
+	
+	public List<Like> getLikeList() {
+		return sql.selectList(nameSpace + ".getLikeList");
 	}
 }

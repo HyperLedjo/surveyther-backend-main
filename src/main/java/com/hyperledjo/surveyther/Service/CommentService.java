@@ -17,27 +17,32 @@ public class CommentService {
 		this.commentDAO = commentDAO;
 	}
 
-	public int putComment() {
-		return 0;
+	public int putComment(Comment comment) {
+		return commentDAO.putComment(comment);
 	}
 
-	public int deleteComment() {
-		return 0;
+	public int deleteComment(int id) {
+		return commentDAO.deleteComment(id);
 	}
 
-	public int postComment() {
-		return 0;
+	public int postComment(Comment comment) {
+		return commentDAO.postComment(comment);
 	}
 
-	public int getCommentCount() {
-		return 0;
+	public int getCommentCount(int id) {
+		return commentDAO.getCommentCount(id);
 	}
 
-	public Comment getComment() {
-		return null;
+	public List<Comment> getCommentListFromSurvey(int id) {
+		return commentDAO.getCommentListFromSurvey(id);
+	}
+
+	// id is comment's primary key
+	public Comment getComment(int id) {
+		return commentDAO.getComment(id);
 	}
 
 	public List<Comment> getCommentList() {
-		return null;
+		return commentDAO.getCommentList();
 	}
 }

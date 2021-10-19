@@ -2,34 +2,47 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 좋아요(Like) 서비스에 해당하는 기능을 위한 SQL 매퍼 -->
+<!-- 좋아요(like) 서비스에 해당하는 기능을 위한 SQL 매퍼 -->
 <mapper namespace="com.hyperledjo.surveyther.DAO.LikeDAO">
 
 	<!-- 좋아요 서비스에 정의된 기능은 좋아요 조회, 집계, 표시, 제거 -->
 	<!-- 각 기능에 필요한 메소드는 GET, GET, POST, DELETE -->
 
-	<delete id="dislike" parameterType="com.hyperledjo.surveyther.DTO.Like">
-		DLETE FROM LIKE WHERE surveyId=#{surveyId} AND memberId=#{memberId}
-	</delete>
+	<update id="dislike"
+		parameterType="com.hyperledjo.surveyther.DTO.Like">
+		UPDATE like SET liked=0 WHERE no=#{no} AND
+		surveyId=#{surveyId} AND memberId=#{memberId}
+	</update>
 
-	<insert id="like" parameterType="com.hyperledjo.surveyther.DTO.Like">
-		INSERT INTO LIKE(surveyId, memberId, liked) VALUES(#{surveyId}, #{memberId}, 1)
+	<insert id="like"
+		parameterType="com.hyperledjo.surveyther.DTO.Like">
+		INSERT INTO like(surveyId, memberId, liked)
+		VALUES(#{surveyId}, #{memberId}, 1)
 	</insert>
 
 	<select id="getLikedCount" resultType="Integer">
-		SELECT count(*) FROM LIKE WHERE liked=1;
+		SELECT count(*) FROM like
+		WHERE liked=1;
 	</select>
 
-	<select id="getLike"
+	<select id="getMyLike"
+		parameterType="com.hyperledjo.surveyther.DTO.Like"
+		resultType="com.hyperledjo.surveyther.DTO.Like">
+		SELECT * FROM like WHERE no=#{no} AND surveyId=#{surveyId}
+		AND
+		memberId=#{memberId}
+	</select>
+
+	<select id="getLikeFromSurvey"
 		resultType="com.hyperledjo.surveyther.DTO.Like"
 		parameterType="Integer">
-		SELECT * FROM LIKE WHERE no=#{id}
+		SELECT * FROM like WHERE surveyId=#{id}
 	</select>
 
 	<select id="getLikeList"
 		resultType="com.hyperledjo.surveyther.DTO.Like">
 		SELECT *
 		FROM
-		LIKE
+		like
 	</select>
 </mapper>

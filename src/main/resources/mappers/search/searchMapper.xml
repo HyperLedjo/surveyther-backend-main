@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyperledjo.surveyther.DAO.SearchDAO">
+
+	<select id="searchSurvey" parameterType="String"
+		resultType="com.hyperledjo.surveyther.DTO.Survey">
+		SELECT s.* FROM survey AS s JOIN tag AS t ON
+		s.no=t.surveyId WHERE
+		s.title like CONCAT('%',#{keyword},'%') OR
+		t.content like CONCAT('%',#{keyword},'%') GROUP BY s.no
+	</select>
+
+</mapper>

@@ -15,7 +15,7 @@ public class SurveyService {
 	public SurveyService(SurveyDAO surveyDAO) {
 		this.surveyDAO = surveyDAO;
 	}
-
+	
 	public int postSurvey(Survey survey) {
 		return surveyDAO.postSurvey(survey);
 	}

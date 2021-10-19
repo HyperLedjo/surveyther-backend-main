@@ -9,16 +9,8 @@ public class UrlConfig {
 	@Value("{ganache.network.url}")
 	private String ganacheNetworkUrl;
 
-	public String getGanacheNetworkUrl() {
-		return ganacheNetworkUrl;
-	}
-
 	@Value("{ethereum.network.url}")
 	private String ethereumNetworkUrl;
-
-	public String getEthereumNetworkUrl() {
-		return ethereumNetworkUrl;
-	}
 
 	@Value("{frontend.url}")
 	private String frontendUrl;
@@ -45,6 +37,14 @@ public class UrlConfig {
 
 	public String getOauthTokenUrl() {
 		return oauthTokenUrl;
+	}
+
+	public String getEthereumNetworkUrl() {
+		return ethereumNetworkUrl;
+	}
+
+	public String getGanacheNetworkUrl() {
+		return ganacheNetworkUrl;
 	}
 
 	public String getUserMeUrl() {

@@ -15,23 +15,27 @@ public class LikeService {
 		this.likeDAO = likeDAO;
 	}
 
-	public int dislike() {
-		return 0;
+	public int dislike(Like like) {
+		return likeDAO.dislike(like);
 	}
 
-	public int like() {
-		return 0;
+	public int like(Like like) {
+		return likeDAO.like(like);
 	}
 
 	public int getLikedCount() {
-		return 0;
+		return likeDAO.getLikedCount();
 	}
 
-	public Like getLiked() {
-		return null;
+	public Like getMyLike(Like like) {
+		return likeDAO.getMyLike(like);
 	}
 
-	public List<Like> getLikedList() {
-		return null;
+	public List<Like> getLikeFromSurvey(int id) {
+		return likeDAO.getLikeFromSurvey(id);
+	}
+
+	public List<Like> getLikeList() {
+		return likeDAO.getLikeList();
 	}
 }

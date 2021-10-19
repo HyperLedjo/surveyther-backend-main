@@ -16,10 +16,6 @@ public class SurveyDAO {
 		this.sql = sql;
 	}
 
-//	public List<Survey> searchSurvey(String search) {
-//		
-//	}
-
 	public List<Survey> getSurveyToCloseList(String now) {
 		return sql.selectList(nameSpace + ".getSurveyToCloseList", now);
 	}

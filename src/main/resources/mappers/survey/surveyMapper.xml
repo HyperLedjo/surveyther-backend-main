@@ -21,7 +21,8 @@
 		INSERT INTO survey(memberId, category, title, content,
 		goalParticipants, regDate, deadline, paid, fee, status)
 		VALUES(#{memberId},
-		#{category}, #{title}, #{content}, #{goalParticipants}, now(),
+		#{category}, #{title}, #{content},
+		#{goalParticipants}, now(),
 		#{deadline}, #{paid}, #{fee}, 0)
 		<selectKey keyProperty="no" resultType="Integer"
 			order="AFTER">

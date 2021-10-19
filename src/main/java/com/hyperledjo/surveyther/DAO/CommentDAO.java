@@ -17,22 +17,27 @@ public class CommentDAO {
 		this.sql = sql;
 	}
 
-	public int putComment() {
-		return 0;
+	public int putComment(Comment comment) {
+		return sql.update(nameSpace + ".putComment", comment);
 	}
 
-	public int deleteComment() {
-		return 0;
+	public int deleteComment(int id) {
+		return sql.delete(nameSpace + ".deleteComment", id);
 	}
 
-	public int postComment() {
-		return 0;
+	public int postComment(Comment comment) {
+		return sql.insert(nameSpace + ".postComment", comment);
 	}
 
-	public int getCommentCount() {
-		return 0;
+	public int getCommentCount(int id) {
+		return sql.selectOne(nameSpace + ".getCommentCount", id);
 	}
 
+	public List<Comment> getCommentListFromSurvey(int id) {
+		return sql.selectList(nameSpace + ".getCommentListFromSurvey", id);
+	}
+
+	// id is comment's primary key
 	public Comment getComment(int id) {
 		return sql.selectOne(nameSpace + ".getComment", id);
 	}

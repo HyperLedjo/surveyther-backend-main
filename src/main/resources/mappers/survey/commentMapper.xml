@@ -9,25 +9,31 @@
 	<!-- 각 기능에 필요한 메소드는 GET, GET, POST, DELETE -->
 
 	<update id="putComment"
-	parameterType="com.hyperledjo.surveyther.DTO.Comment">
-		UPDATE COMMENT SET
-		comment=#{comment} WHERE no=#{no}
+		parameterType="com.hyperledjo.surveyther.DTO.Comment">
+		UPDATE comment SET
+		content=#{content} WHERE no=#{no}
 	</update>
 
 	<delete id="deleteComment" parameterType="Integer">
-		DELETE FROM COMMENT
+		DELETE FROM comment
 		WHERE no=#{id}
 	</delete>
 
 	<insert id="postComment"
 		parameterType="com.hyperledjo.surveyther.DTO.Comment">
-		INSERT INTO COMMENT(memberId, surveyId, content,
+		INSERT INTO comment(memberId, surveyId, content,
 		regDate) VALUES(#{memberId}, #{surveyId}, #{content}, now())
 	</insert>
 
-	<select id="getCommentCount" resultType="Integer">
+	<select id="getCommentCount" parameterType="Integer"
+		resultType="Integer">
 		SELECT count(*) FROM
-		COMMNET WHERE surveyId=#{id}
+		comment WHERE surveyId=#{id}
+	</select>
+
+	<select id="getCommentListFromSurvey" parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Comment">
+		SELECT * FROM comment WHERE surveyId=#{id}
 	</select>
 
 	<select id="getComment"
