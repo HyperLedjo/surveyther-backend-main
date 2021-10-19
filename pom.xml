@@ -17,12 +17,48 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>4.9.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<version>4.9.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp-urlconnection -->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp-urlconnection</artifactId>
+			<version>4.9.1</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.web3j/core -->
 		<dependency>
 			<groupId>org.web3j</groupId>
 			<artifactId>core</artifactId>
-			<version>5.0.0</version>
+			<version>4.8.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.web3j/geth -->
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>geth</artifactId>
+			<version>4.8.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.web3j/utils -->
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>utils</artifactId>
+			<version>4.8.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -90,6 +126,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.iamport/iamport-rest-client-java -->
+		<dependency>
+			<groupId>com.github.iamport</groupId>
+			<artifactId>iamport-rest-client-java</artifactId>
+			<version>0.2.15</version>
 		</dependency>
 	</dependencies>
 

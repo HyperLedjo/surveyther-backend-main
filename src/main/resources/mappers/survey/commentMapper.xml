@@ -30,16 +30,16 @@
 		COMMNET WHERE surveyId=#{id}
 	</select>
 
-	<select id="getLike"
+	<select id="getComment"
 		resultType="com.hyperledjo.surveyther.DTO.Comment"
 		parameterType="Integer">
-		SELECT * FROM COMMENT WHERE no=#{id}
+		SELECT * FROM comment WHERE no=#{id}
 	</select>
 
 	<select id="getCommentList"
 		resultType="com.hyperledjo.surveyther.DTO.Comment">
 		SELECT *
 		FROM
-		COMMENT
+		comment
 	</select>
 </mapper>

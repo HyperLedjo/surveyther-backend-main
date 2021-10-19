@@ -5,6 +5,21 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UrlConfig {
+
+	@Value("{ganache.network.url}")
+	private String ganacheNetworkUrl;
+
+	public String getGanacheNetworkUrl() {
+		return ganacheNetworkUrl;
+	}
+
+	@Value("{ethereum.network.url}")
+	private String ethereumNetworkUrl;
+
+	public String getEthereumNetworkUrl() {
+		return ethereumNetworkUrl;
+	}
+
 	@Value("{frontend.url}")
 	private String frontendUrl;
 
@@ -19,20 +34,6 @@ public class UrlConfig {
 
 	@Value("{user.logout.url}")
 	private String userLogoutUrl;
-
-	@Value("{payment.ready.url}")
-	private String paymentReadyUrl;
-
-	@Value("{payment.approve.url}")
-	private String paymentApproveUrl;
-
-	public String getPaymentApproveUrl() {
-		return paymentApproveUrl;
-	}
-
-	public String getPaymentReadyUrl() {
-		return paymentReadyUrl;
-	}
 
 	public String getFrontendUrl() {
 		return frontendUrl;

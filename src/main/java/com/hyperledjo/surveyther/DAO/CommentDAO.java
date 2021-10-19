@@ -33,11 +33,11 @@ public class CommentDAO {
 		return 0;
 	}
 
-	public Comment getComment() {
-		return null;
+	public Comment getComment(int id) {
+		return sql.selectOne(nameSpace + ".getComment", id);
 	}
 
 	public List<Comment> getCommentList() {
-		return null;
+		return sql.selectList(nameSpace + ".getCommentList");
 	}
 }
