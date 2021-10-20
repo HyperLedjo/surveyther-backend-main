@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.hyperledjo.surveyther.DTO.Survey;
+import com.hyperledjo.surveyther.DTO.TransferComments;
+import com.hyperledjo.surveyther.DTO.TransferLikes;
 
 @Repository
 public class SurveyDAO {
@@ -16,6 +18,14 @@ public class SurveyDAO {
 		this.sql = sql;
 	}
 
+	public int updateComments(TransferComments tc) {
+		return sql.update(nameSpace + ".updateComments", tc);
+	}
+	
+	public int updateLikes(TransferLikes tl) {
+		return sql.update(nameSpace + ".updateLikes", tl);
+	}
+	
 	public List<Survey> getSurveyToCloseList(String now) {
 		return sql.selectList(nameSpace + ".getSurveyToCloseList", now);
 	}

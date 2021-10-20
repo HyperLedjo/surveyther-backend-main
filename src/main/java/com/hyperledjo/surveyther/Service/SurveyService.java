@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.hyperledjo.surveyther.DAO.SurveyDAO;
 import com.hyperledjo.surveyther.DTO.Survey;
+import com.hyperledjo.surveyther.DTO.TransferComments;
+import com.hyperledjo.surveyther.DTO.TransferLikes;
 
 @Service
 public class SurveyService {
@@ -14,6 +16,14 @@ public class SurveyService {
 
 	public SurveyService(SurveyDAO surveyDAO) {
 		this.surveyDAO = surveyDAO;
+	}
+	
+	public int updateComments(TransferComments tc) {
+		return surveyDAO.updateComments(tc);
+	}
+	
+	public int updateLikes(TransferLikes tl) {
+		return surveyDAO.updateLikes(tl);
 	}
 	
 	public int postSurvey(Survey survey) {

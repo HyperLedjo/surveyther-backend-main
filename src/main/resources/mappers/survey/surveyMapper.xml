@@ -4,6 +4,16 @@
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.SurveyDAO">
 
+	<update id="updateComments"
+		parameterType="com.hyperledjo.surveyther.DTO.TransferComments">
+		UPDATE survey SET comments=#{comments} WHERE no=#{surveyId}
+	</update>
+
+	<update id="updateLikes"
+		parameterType="com.hyperledjo.surveyther.DTO.TransferLikes">
+		UPDATE survey SET likes=#{likes} WHERE no=#{surveyId}
+	</update>
+
 	<select id="getSurveyToCloseList" parameterType="String"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT * from survey WHERE deadline=#{now}

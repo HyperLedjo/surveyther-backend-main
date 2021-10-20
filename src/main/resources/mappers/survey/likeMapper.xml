@@ -10,25 +10,27 @@
 
 	<update id="dislike"
 		parameterType="com.hyperledjo.surveyther.DTO.Like">
-		UPDATE like SET liked=0 WHERE no=#{no} AND
-		surveyId=#{surveyId} AND memberId=#{memberId}
+		UPDATE `like` SET liked=0 WHERE surveyId=#{surveyId} AND
+		memberId=#{memberId}
 	</update>
 
 	<insert id="like"
 		parameterType="com.hyperledjo.surveyther.DTO.Like">
-		INSERT INTO like(surveyId, memberId, liked)
+		INSERT INTO `like`(surveyId, memberId, liked)
 		VALUES(#{surveyId}, #{memberId}, 1)
 	</insert>
 
-	<select id="getLikedCount" resultType="Integer">
-		SELECT count(*) FROM like
-		WHERE liked=1;
+	<select id="getLikedCount" parameterType="Integer"
+		resultType="Integer">
+		SELECT count(*) FROM `like`
+		WHERE liked=1 AND
+		surveyId=#{id};
 	</select>
 
 	<select id="getMyLike"
 		parameterType="com.hyperledjo.surveyther.DTO.Like"
 		resultType="com.hyperledjo.surveyther.DTO.Like">
-		SELECT * FROM like WHERE surveyId=#{surveyId}
+		SELECT * FROM `like` WHERE surveyId=#{surveyId}
 		AND
 		memberId=#{memberId}
 	</select>
@@ -36,13 +38,13 @@
 	<select id="getLikeFromSurvey"
 		resultType="com.hyperledjo.surveyther.DTO.Like"
 		parameterType="Integer">
-		SELECT * FROM like WHERE surveyId=#{id}
+		SELECT * FROM `like` WHERE surveyId=#{id}
 	</select>
 
 	<select id="getLikeList"
 		resultType="com.hyperledjo.surveyther.DTO.Like">
 		SELECT *
 		FROM
-		like
+		`like`
 	</select>
 </mapper>

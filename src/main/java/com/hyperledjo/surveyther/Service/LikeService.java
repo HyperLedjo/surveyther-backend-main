@@ -5,22 +5,53 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.hyperledjo.surveyther.DAO.LikeDAO;
+import com.hyperledjo.surveyther.DAO.SurveyDAO;
 import com.hyperledjo.surveyther.DTO.Like;
+import com.hyperledjo.surveyther.DTO.TransferLikes;
 
 @Service
 public class LikeService {
 	private LikeDAO likeDAO;
+	private SurveyDAO surveyDAO;
 
-	public LikeService(LikeDAO likeDAO) {
+	public LikeService(LikeDAO likeDAO, SurveyDAO surveyDAO) {
 		this.likeDAO = likeDAO;
+		this.surveyDAO = surveyDAO;
 	}
 
 	public int dislike(Like like) {
-		return likeDAO.dislike(like);
+		TransferLikes tl = new TransferLikes();
+		tl.setSurveyId(like.getSurveyId());
+
+		int result = likeDAO.dislike(like);
+		if (result < 1)
+			return -1;
+
+		int count = likeDAO.getLikedCount(like.getSurveyId());
+		tl.setLikes(count);
+		result = surveyDAO.updateLikes(tl);
+		
+		if (result < 1)
+			return 0;
+
+		return 1;
 	}
 
 	public int like(Like like) {
-		return likeDAO.like(like);
+		TransferLikes tl = new TransferLikes();
+		tl.setSurveyId(like.getSurveyId());
+
+		int result = likeDAO.like(like);
+		if (result < 1)
+			return -1;
+
+		int count = likeDAO.getLikedCount(like.getSurveyId());
+		tl.setLikes(count);
+		result = surveyDAO.updateLikes(tl);
+		if (result < 1)
+			return 0;
+
+		return 1;
 	}
 
 	public int getLikedCount(int id) {
