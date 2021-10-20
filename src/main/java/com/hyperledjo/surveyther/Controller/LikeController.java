@@ -34,9 +34,9 @@ public class LikeController {
 		return likeService.like(like);
 	}
 
-	@GetMapping("/likes/count")
-	public int getLikedCount() {
-		return likeService.getLikedCount();
+	@GetMapping("/likes/count/{id}")
+	public int getLikedCount(@PathVariable("id") int id) {
+		return likeService.getLikedCount(id);
 	}
 
 	@PostMapping("/likes/me")

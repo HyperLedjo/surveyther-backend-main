@@ -25,8 +25,8 @@ public class LikeDAO {
 		return sql.insert(nameSpace + ".like", like);
 	}
 	
-	public int getLikedCount() {
-		return sql.selectOne(nameSpace + ".getLikedCount");
+	public int getLikedCount(int id) {
+		return sql.selectOne(nameSpace + ".getLikedCount", id);
 	}
 	
 	public Like getMyLike(Like like) {

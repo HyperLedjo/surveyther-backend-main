@@ -28,7 +28,7 @@
 	<select id="getMyLike"
 		parameterType="com.hyperledjo.surveyther.DTO.Like"
 		resultType="com.hyperledjo.surveyther.DTO.Like">
-		SELECT * FROM like WHERE no=#{no} AND surveyId=#{surveyId}
+		SELECT * FROM like WHERE surveyId=#{surveyId}
 		AND
 		memberId=#{memberId}
 	</select>

@@ -23,8 +23,8 @@ public class LikeService {
 		return likeDAO.like(like);
 	}
 
-	public int getLikedCount() {
-		return likeDAO.getLikedCount();
+	public int getLikedCount(int id) {
+		return likeDAO.getLikedCount(id);
 	}
 
 	public Like getMyLike(Like like) {
