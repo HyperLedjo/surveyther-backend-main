@@ -22,7 +22,7 @@
 	<insert id="postComment"
 		parameterType="com.hyperledjo.surveyther.DTO.Comment">
 		INSERT INTO comment(memberId, surveyId, content,
-		regDate) VALUES(#{memberId}, #{surveyId}, #{content}, now())
+		regDate, author) VALUES(#{memberId}, #{surveyId}, #{content}, now(), #{author})
 	</insert>
 
 	<select id="getCommentCount" parameterType="Integer"

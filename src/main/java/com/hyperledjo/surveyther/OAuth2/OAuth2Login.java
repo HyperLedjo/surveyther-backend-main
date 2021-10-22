@@ -24,19 +24,17 @@ import com.hyperledjo.surveyther.Config.UrlConfig;
 public class OAuth2Login {
 
 	private KeyConfig keyConfig;
-	private UrlConfig urlConfig;
 
-	public OAuth2Login(KeyConfig keyConfig, UrlConfig urlConfig) {
+	public OAuth2Login(KeyConfig keyConfig) {
 		this.keyConfig = keyConfig;
-		this.urlConfig = urlConfig;
 	}
 
 	public JsonNode getUser(String token) {
 
-		final String requestURL = urlConfig.getUserMeUrl();
+		final String requestURL = "https://kapi.kakao.com/v2/user/me";
 		final HttpClient client = HttpClientBuilder.create().build();
 		final HttpPost post = new HttpPost(requestURL);
-
+		
 		post.addHeader("Authorization", "Bearer " + token);
 
 		JsonNode jsonNode = null;
@@ -58,14 +56,12 @@ public class OAuth2Login {
 	}
 
 	public JsonNode getToken(String code) {
-		final String requestURL = urlConfig.getOauthTokenUrl();
+		final String requestURL = "https://kauth.kakao.com/oauth/token";
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		System.out.println(keyConfig.getRestApiKey());
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		postParams.add(new BasicNameValuePair("client_id", keyConfig.getRestApiKey()));
-		// postParams.add(new BasicNameValuePair("redirect_uri",
-		// "http://localhost:8082/oauth2/login"));
-		postParams.add(new BasicNameValuePair("redirect_uri", urlConfig.getBackendUrl() + "/oauth2/login"));
+		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8082/oauth2/login"));
 		postParams.add(new BasicNameValuePair("code", code));
 		postParams.add(new BasicNameValuePair("client_secret", keyConfig.getClientSecretKey()));
 

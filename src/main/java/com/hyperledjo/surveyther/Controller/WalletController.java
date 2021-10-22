@@ -1,50 +1,38 @@
 package com.hyperledjo.surveyther.Controller;
 
-import java.util.List;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.web3j.crypto.CipherException;
+import org.web3j.protocol.exceptions.TransactionException;
 
-import com.hyperledjo.surveyther.Contract.WalletContract;
+import com.hyperledjo.surveyther.Blockchain.WalletContract;
+import com.hyperledjo.surveyther.Blockchain.Web3Contract;
 import com.hyperledjo.surveyther.DTO.Wallet;
+import com.hyperledjo.surveyther.Service.WalletService;
 
 @RestController
 @RequestMapping("/api")
 public class WalletController {
 
-	private WalletContract wallet;
-
-	public WalletController(WalletContract wallet) {
+	private Web3Contract wc;
+	
+	public WalletController(Web3Contract wc) {
 		// TODO Auto-generated constructor stub
-		this.wallet = wallet;
+		this.wc = wc;
+	}
+	
+	
+	@GetMapping("/web3/test")
+	public void web3Test() {
+		wc.get("getRegiSurvey");
 	}
 
-	@GetMapping("/wallet_test")
-	public void walletTest() {
-		try {
-			wallet.getEthClientVersionSync();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	@PostMapping("/wallet")
-	public String postWallet() {
-		return null;
-	}
-
-	@GetMapping("/wallet/{id}")
-	public Wallet getWallet(@PathVariable("id") String id) {
-
-		return null;
-	}
-
-	@GetMapping("/wallet")
-	public List<Wallet> getWalletList() {
-		return null;
-	}
 }

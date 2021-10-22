@@ -21,12 +21,10 @@ public class OAuth2Controller {
 
 	private OAuth2Service oAuth2Service;
 	private HttpSession httpSession;
-	private UrlConfig urlConfig;
 
 	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession, UrlConfig urlConfig) {
 		this.oAuth2Service = oAuth2Service;
 		this.httpSession = httpSession;
-		this.urlConfig = urlConfig;
 	}
 
 	/*
@@ -47,7 +45,7 @@ public class OAuth2Controller {
 	@GetMapping("/logout")
 	public void logout(HttpServletResponse response) throws IOException {
 		httpSession.invalidate();
-		response.sendRedirect(urlConfig.getFrontendUrl());
+		response.sendRedirect("http://localhost:8081");
 		// response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 
@@ -76,7 +74,7 @@ public class OAuth2Controller {
 		member.setGender(gender);
 		httpSession.setAttribute("member", member);
 
-		response.sendRedirect(urlConfig.getFrontendUrl());
+		response.sendRedirect("http://localhost:8081");
 		// response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 }

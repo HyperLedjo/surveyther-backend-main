@@ -5,9 +5,18 @@ import java.sql.Timestamp;
 public class Comment {
 	private int no;
 	private int memberId;
+	private String author;
 	private int surveyId;
 	private String content;
 	private Timestamp regDate;
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
 	public int getNo() {
 		return no;

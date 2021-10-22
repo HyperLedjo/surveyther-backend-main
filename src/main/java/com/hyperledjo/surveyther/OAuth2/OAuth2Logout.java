@@ -16,17 +16,11 @@ import com.hyperledjo.surveyther.Config.UrlConfig;
 
 @Component
 public class OAuth2Logout {
-
-	private UrlConfig urlConfig;
-	
-	public OAuth2Logout(UrlConfig urlConfig) {
-		this.urlConfig = urlConfig;
-	}
 	
 	public JsonNode logout(String code) {
 		JsonNode jsonNode = null;
 
-		final String requestURL = urlConfig.getUserLogoutUrl();
+		final String requestURL = "https://kapi.kakao.com/v1/user/logout";
 		final HttpClient client = HttpClientBuilder.create().build();
 		final HttpPost post = new HttpPost(requestURL);
 

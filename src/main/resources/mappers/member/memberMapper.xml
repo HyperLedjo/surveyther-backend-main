@@ -9,16 +9,24 @@
 		UPDATE member SET name=#{name}, birthYear=#{birthYear},
 		phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3},
 		residence=#{residence}, job=#{job}, married=#{married},
-		academic=#{academic}, income=#{income}, confirm=#{confirm}
-		WHERE id=#{id}
+		academic=#{academic}, income=#{income}, wallet=#{wallet},
+		confirm=#{confirm}
+		WHERE
+		id=#{id}
 	</update>
 
 	<insert id="postMember"
 		parameterType="com.hyperledjo.surveyther.DTO.Member">
 		INSERT INTO member(id, email, birthDay, gender,
 		regDate)
-		VALUES(#{id}, #{email}, #{birthDay}, #{gender},
+		VALUES(#{id},
+		#{email}, #{birthDay}, #{gender},
 		now())
+		<selectKey keyProperty="no" resultType="Integer"
+			order="AFTER">
+			SELECT
+			LAST_INSERT_ID() as no
+		</selectKey>
 	</insert>
 
 	<select id="getMember"
