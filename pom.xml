@@ -47,11 +47,10 @@
 			<groupId>org.web3j</groupId>
 			<artifactId>core</artifactId>
 			<version>4.8.4</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.web3j/geth -->
+		</dependency><!-- https://mvnrepository.com/artifact/org.web3j/codegen -->
 		<dependency>
 			<groupId>org.web3j</groupId>
-			<artifactId>geth</artifactId>
+			<artifactId>codegen</artifactId>
 			<version>4.8.4</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.web3j/utils -->

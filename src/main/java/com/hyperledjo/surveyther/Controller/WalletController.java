@@ -30,9 +30,14 @@ public class WalletController {
 	}
 	
 	
-	@GetMapping("/web3/test")
-	public void web3Test() {
-		wc.get("getRegiSurvey");
+	@GetMapping("/web3/test/store")
+	public void web3TestStore() throws Exception {
+		wc.regSurveyStore("store", 1, 1, "2021-10-13");
+	}
+	
+	@GetMapping("/web3/test/retrieve")
+	public void web3Test() throws IOException {
+		wc.regSurveyRetrieve("retrieve", 1);
 	}
 
 }
