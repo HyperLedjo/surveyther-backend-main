@@ -11,8 +11,21 @@
 		VALUES(#{memberId},#{surveyId},#{questionId},#{answerId},now())
 	</insert>
 
-	<select id="getParticipantsList" parameterType="Integer"
-		resultType="com.hyperledjo.surveyther.DTO.Participants">
-		SELECT * FROM participants WHERE surveyId=#{id}
+	<select id="checkParticipants"
+		parameterType="com.hyperledjo.surveyther.DTO.Participants"
+		resultType="Integer">
+		SELECT count(*) FROM participants WHERE memberId=#{memberId} AND surveyId=#{surveyId}
 	</select>
+
+	<select id="getParticipantsResult" parameterType="Integer">
+	</select>
+
+	<select id="getParticipantsCount" parameterType="Integer"
+		resultType="Integer">
+		SELECT count(memberId) FROM participants WHERE
+		surveyId=#{id}
+	</select>
+
+	<!-- <select id="getParticipantsList" parameterType="Integer" resultType="com.hyperledjo.surveyther.DTO.Participants"> 
+		SELECT * FROM participants WHERE surveyId=#{id} </select> -->
 </mapper>

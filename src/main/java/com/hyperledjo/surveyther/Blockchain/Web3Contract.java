@@ -51,7 +51,7 @@ public class Web3Contract {
 		RegSurvey regSurvey = RegSurvey.load(contractAddress, admin, credentials, gasProvider);
 //		String cAddress = regSurvey.getContractAddress();
 		TransactionReceipt receipt = regSurvey.store(memberId, surveyId, regDate).send();
-		
+	
 //		Function function = new Function(contractMethodName,
 //				Arrays.<Type>asList(new Uint256(_memberId), new Uint256(_surveyId), new Utf8String(_regDate)),
 //				Collections.<TypeReference<?>>emptyList());

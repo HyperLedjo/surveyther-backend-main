@@ -3,6 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.WalletDAO">
+	<!-- 추후에 public key도 저장 -->
 	<insert id="postWallet"
 		parameterType="com.hyperledjo.surveyther.DTO.Wallet">
 		INSERT INTO wallet(memberId, address, privateKey) VALUES

@@ -27,12 +27,21 @@ public class ParticipantsController {
 	public int postParticipants(@RequestBody List<Participants> participants) {
 		int result = participantsService.postParticipants(participants);
 		if (result < 1)
-			return -1;
+			return result;
 		return result;
 	}
-
+	
+	// 한 서베이에 참여한 인원수 집계
 	@GetMapping("/participants/{id}")
-	public List<Participants> getParticipantsList(@PathVariable("id") int id) {
-		return participantsService.getParticipantsList(id);
+	public int getParticipantsCount(@PathVariable("id") int id) {
+		return (Integer) participantsService.getParticipantsCount(id);
 	}
+	
+	// 각 질문에 해당하는 답변 집계(어떻게 한번에 질의할 수 있을까?)
+	
+	// 한 서베이에 참여한 참여(Participants) 객체 집계
+//	@GetMapping("/participants/{id}")
+//	public List<Participants> getParticipantsList(@PathVariable("id") int id) {
+//		return participantsService.getParticipantsList(id);
+//	}
 }

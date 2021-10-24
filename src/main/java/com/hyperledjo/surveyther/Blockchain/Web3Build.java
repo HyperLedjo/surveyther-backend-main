@@ -1,7 +1,10 @@
 package com.hyperledjo.surveyther.Blockchain;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
 import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.core.methods.response.EthMining;
 import org.web3j.protocol.http.HttpService;
 
 @Component
@@ -15,5 +18,9 @@ public class Web3Build {
 	
 	public Admin getAdmin() {
 		return admin;
+	}
+	
+	public void shutdownAdmin() throws Exception {
+		admin.shutdown();
 	}
 }
