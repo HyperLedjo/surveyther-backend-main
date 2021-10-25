@@ -1,11 +1,15 @@
 package com.hyperledjo.surveyther.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyperledjo.surveyther.DAO.ParticipantsDAO;
 import com.hyperledjo.surveyther.DTO.Participants;
+import com.hyperledjo.surveyther.DTO.ParticipantsAnswerResponse;
 
 @Service
 public class ParticipantsService {
@@ -37,8 +41,31 @@ public class ParticipantsService {
 		return 1;
 	}
 
-	public int getParticipantsCount(int id) {
-		return participantsDAO.getParticipantsCount(id);
+	public JsonNode getParticipantsSurveyResponseInfo(int id) {
+		List<Participants> getParticipantsQuestionIdsInfo = participantsDAO.getParticipantsQuestionIdsInfo(id);
+		List<ParticipantsAnswerResponse> answerResponses = new ArrayList<>();
+		ObjectMapper objMapper = new ObjectMapper();
+
+		
+		getParticipantsQuestionIdsInfo.forEach(data -> {
+			List<Participants> getParticipantsAnswerIdsInfo = participantsDAO
+					.getParicipantsAnswerIdsInfo(data.getQuestionId());
+			getParticipantsAnswerIdsInfo.forEach(answer -> {
+				ParticipantsAnswerResponse answerResponse = new ParticipantsAnswerResponse();
+//				answerResponse.setSurveyId(id);
+				answerResponse.setQuestionId(data.getQuestionId());
+				answerResponse.setAnswerId(answer.getAnswerId());
+				answerResponse.setResult(participantsDAO.getParticipantsAnswersCount(answer.getAnswerId()));
+				answerResponses.add(answerResponse);
+			});
+		});
+
+		JsonNode jsonNode = objMapper.valueToTree(answerResponses);
+		return jsonNode;
+	}
+
+	public int getParticipantsMembersCount(int id) {
+		return participantsDAO.getParticipantsMembersCount(id);
 	}
 
 	// id is participants entitiy's id of survey(fk)

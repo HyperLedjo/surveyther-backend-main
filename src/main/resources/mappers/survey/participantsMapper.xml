@@ -14,15 +14,38 @@
 	<select id="checkParticipants"
 		parameterType="com.hyperledjo.surveyther.DTO.Participants"
 		resultType="Integer">
-		SELECT count(*) FROM participants WHERE memberId=#{memberId} AND surveyId=#{surveyId}
+		SELECT count(*) FROM participants WHERE
+		memberId=#{memberId} AND surveyId=#{surveyId}
 	</select>
 
-	<select id="getParticipantsResult" parameterType="Integer">
+	<select id="getParticipantsAnswerIdsInfo"
+		parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Participants">
+		SELECT distinct answerId FROM participants WHERE
+		questionId=#{id}
 	</select>
 
-	<select id="getParticipantsCount" parameterType="Integer"
+	<select id="getParticipantsQuestionIdsInfo"
+		parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Participants">
+		SELECT distinct questionId FROM participants WHERE
+		surveyId=#{id}
+	</select>
+
+	<select id="getParticipantsSurveyResponseInfo"
+		parameterType="Integer"
+		resultType="com.hyperledjo.surveyther.DTO.Participants">
+		SELECT * FROM participants WHERE surveyId=#{id}
+	</select>
+
+	<select id="getParticipantsAnswersCount" parameterType="Integer"
 		resultType="Integer">
-		SELECT count(memberId) FROM participants WHERE
+		SELECT count(*) FROM participants WHERE answerId=#{id}
+	</select>
+
+	<select id="getParticipantsMembersCount" parameterType="Integer"
+		resultType="Integer">
+		SELECT count(distinct memberId) FROM participants WHERE
 		surveyId=#{id}
 	</select>
 

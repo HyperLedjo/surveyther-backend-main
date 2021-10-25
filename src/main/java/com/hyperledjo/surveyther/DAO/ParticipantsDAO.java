@@ -1,5 +1,7 @@
 package com.hyperledjo.surveyther.DAO;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +26,24 @@ public class ParticipantsDAO {
 		return sql.insert(nameSpace + ".postParticipants", participants);
 	}
 	
-	public int getParticipantsCount(int id) {
-		return sql.selectOne(nameSpace + ".getParticipantsCount", id);
+	public List<Participants> getParicipantsAnswerIdsInfo(int id) {
+		return sql.selectList(nameSpace + ".getParticipantsAnswerIdsInfo", id);
+	}
+	
+	public List<Participants> getParticipantsQuestionIdsInfo(int id) {
+		return sql.selectList(nameSpace + ".getParticipantsQuestionIdsInfo", id);
+	}
+	
+	public List<Participants> getParticipantsSurveyResponseInfo(int id) {
+		return sql.selectList(nameSpace + ".getParticipantsSurveyResponseInfo", id);
+	}
+	
+	public int getParticipantsAnswersCount(int id) {
+		return sql.selectOne(nameSpace + ".getParticipantsAnswersCount", id);
+	}
+	
+	public int getParticipantsMembersCount(int id) {
+		return sql.selectOne(nameSpace + ".getParticipantsMembersCount", id);
 	}
 	
 //	public List<Participants> getParticipantsList(int id) {

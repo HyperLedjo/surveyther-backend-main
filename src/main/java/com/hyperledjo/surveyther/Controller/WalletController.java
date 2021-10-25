@@ -33,8 +33,8 @@ public class WalletController {
 		String address = "0x3e0365e8cd714684a83866966cd30d9a05d55443";
 		return web3Transaction.transferEth(address);
 	}
-	
-	@GetMapping("/ethGetBalance") 
+
+	@GetMapping("/ethGetBalance")
 	public String ethGetBalance() {
 		String address = "0x3e0365e8cd714684a83866966cd30d9a05d55443";
 		return web3Common.ethGetBalance(address);
@@ -52,24 +52,33 @@ public class WalletController {
 		}
 		return 1;
 	}
-	
+
 	// /api/web3/test/store
 	@GetMapping("/web3/test/store")
-	public String web3TestStore() throws Exception {
-		String contractMethodName = "store";
-		BigInteger _memberId = BigInteger.valueOf(2);
-		BigInteger _surveyId = BigInteger.valueOf(2);
-		String _regDate = "2021-10-26";
+	public JsonNode web3TestStore() throws Exception {
+//		String contractMethodName = "store";
+//		BigInteger _memberId = BigInteger.valueOf(1);
+//		BigInteger _surveyId = BigInteger.valueOf(1);
+//		String _regDate = "2021-10-25";
 
-		return wc.regSurveyStore(contractMethodName, _memberId, _surveyId, _regDate);
+		BigInteger surveyId = BigInteger.valueOf(1);
+		BigInteger memberId = BigInteger.valueOf(1);
+		BigInteger questionId = BigInteger.valueOf(27);
+		BigInteger answerId = BigInteger.valueOf(23);
+		
+		return wc.answerResponseSurveyStore(surveyId, memberId, questionId, answerId);
+//		return wc.participantSurveyStore(_memberId, _surveyId, _regDate);
+//		return wc.regSurveyStore(contractMethodName, _memberId, _surveyId, _regDate);
 	}
 
 	// /api/web3/test/retrieve
 	@GetMapping("/web3/test/retrieve")
-	public JsonNode web3Test() throws IOException {
-		String contractMethodName = "retrieve";
-		BigInteger _memberId = BigInteger.ONE;
-		return wc.regSurveyRetrieve(contractMethodName, _memberId);
+	public JsonNode web3Test() throws Exception {
+//		String contractMethodName = "retrieve";
+//		BigInteger _memberId = BigInteger.ONE;
+		BigInteger memberId = BigInteger.valueOf(1);
+		return wc.participantSurveyRetrieve(memberId);
+//		return wc.regSurveyRetrieve(contractMethodName, _memberId);
 	}
 
 }
