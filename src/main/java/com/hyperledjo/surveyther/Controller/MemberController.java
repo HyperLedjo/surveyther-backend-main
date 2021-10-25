@@ -3,9 +3,9 @@ package com.hyperledjo.surveyther.Controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +23,9 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 
-	@PutMapping("/member")
-	public int putMember(@RequestBody Member member) {
-		return memberService.putMember(member);
+	@PatchMapping("/member")
+	public int patchMember(@RequestBody Member member) {
+		return memberService.patchMember(member);
 	}
 	
 	@PostMapping("/member")

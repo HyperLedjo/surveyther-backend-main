@@ -20,8 +20,8 @@ public class MemberService {
 		this.walletDAO = walletDAO;
 	}
 
-	public int putMember(Member member) {
-		return memberDAO.putMember(member);
+	public int patchMember(Member member) {
+		return memberDAO.patchMember(member);
 	}
 
 	public int postMember(Member member) {
@@ -37,11 +37,11 @@ public class MemberService {
 		}
 		wallet = walletDAO.getWallet(member.getNo());
 		member.setWallet(wallet.getAddress());
-		result = memberDAO.putMember(member);
-		if(result < 1) {
+		result = memberDAO.patchMember(member);
+		if (result < 1) {
 			return 0;
 		}
-		
+
 		// KMS 또는 HMS로 키 관리를 하는데 구현하기 까다로우니 일단 Private Key를 암호화해서 DB에 저장해야 함
 		return 1;
 	}

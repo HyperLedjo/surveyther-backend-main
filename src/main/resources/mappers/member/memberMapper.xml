@@ -4,12 +4,12 @@
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.MemberDAO">
 
-	<update id="putMember"
+	<update id="patchMember"
 		parameterType="com.hyperledjo.surveyther.DTO.Member">
 		UPDATE member SET name=#{name}, birthYear=#{birthYear},
 		phone1=#{phone1}, phone2=#{phone2}, phone3=#{phone3},
 		residence=#{residence}, job=#{job}, married=#{married},
-		academic=#{academic}, income=#{income}, wallet=#{wallet},
+		academic=#{academic}, income=#{income},
 		confirm=#{confirm}
 		WHERE
 		id=#{id}

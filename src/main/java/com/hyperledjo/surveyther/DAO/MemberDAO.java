@@ -17,11 +17,12 @@ public class MemberDAO {
 		this.sql = sql;
 	}
 
-	public int putMember(Member member) {
-		if (0 < sql.update(nameSpace + ".putMember", member)) {
-			return 1;
+	public int patchMember(Member member) {
+		int result = sql.update(nameSpace + ".patchMember", member);
+		if (result < 1) {
+			return 0;
 		}
-		return 0;
+		return 1;
 	}
 
 	public int postMember(Member member) {

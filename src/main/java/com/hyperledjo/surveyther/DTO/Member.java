@@ -17,7 +17,7 @@ public class Member {
 	private String job;
 	private boolean married;
 	private String academic;
-	private int income;
+	private String income;
 	private String wallet;
 	private boolean confirm;
 	private Timestamp regDate;
@@ -142,11 +142,11 @@ public class Member {
 		this.academic = academic;
 	}
 
-	public int getIncome() {
+	public String getIncome() {
 		return income;
 	}
 
-	public void setIncome(int income) {
+	public void setIncome(String income) {
 		this.income = income;
 	}
 
