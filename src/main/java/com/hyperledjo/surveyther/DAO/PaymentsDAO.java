@@ -15,6 +15,12 @@ public class PaymentsDAO {
 	}
 	
 	public int postPayments(Payments payments) {
-		return sql.insert(nameSpace + ".postPayments", payments);
+		try {
+			sql.insert(nameSpace + ".postPayments", payments);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+		return payments.getNo();
 	}
 }

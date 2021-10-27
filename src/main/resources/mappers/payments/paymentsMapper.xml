@@ -9,5 +9,9 @@
 		payment(memberId, paymentType, paymentDate,
 		amount)
 		VALUES(#{memberId},#{paymentType},now(),#{paidAmount})
+		<selectKey keyProperty="no" resultType="Integer"
+			order="AFTER">
+			SELECT LAST_INSERT_ID() as no
+		</selectKey>
 	</insert>
 </mapper>

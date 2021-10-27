@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hyperledjo.surveyther.DAO.SurveyOrderDAO">
+	<insert id="postSurveyOrder"
+		parameterType="com.hyperledjo.surveyther.DTO.SurveyOrder">
+		INSERT INTO survey_order(memberId, surveyId, paymentId,
+		price, paid, date)
+		VALUES(#{memberId}, #{surveyId}, #{paymentId},
+		#{price}, #{paid}, now())
+	</insert>
+</mapper>
