@@ -6,7 +6,8 @@
 
 	<update id="updateComments"
 		parameterType="com.hyperledjo.surveyther.DTO.TransferComments">
-		UPDATE survey SET comments=#{comments} WHERE no=#{surveyId}
+		UPDATE survey SET comments=#{comments} WHERE
+		no=#{surveyId}
 	</update>
 
 	<update id="updateLikes"
@@ -49,6 +50,11 @@
 	<select id="getOnGoingSurveyList"
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT * FROM survey WHERE status=0
+	</select>
+
+	<select id="getMySurvey" parameterType="Integer"
+		resultType="Integer">
+		SELECT memberId FROM survey WHERE surveyId=#{id}
 	</select>
 
 	<select id="getMySurveyList"

@@ -49,6 +49,11 @@ public class SurveyController {
 	}
 
 	@GetMapping("/survey/my/{id}")
+	public int getMySurvey(@PathVariable("id") int id) {
+		return surveyService.getMySurvey(id);
+	}
+	
+	@GetMapping("/surveys/my/{id}")
 	public List<Survey> getMySurveyList(@PathVariable("id") int id) {
 		return surveyService.getMySurveyList(id);
 	}

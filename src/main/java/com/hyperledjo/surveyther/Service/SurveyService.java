@@ -47,6 +47,10 @@ public class SurveyService {
 		return surveyDAO.getOnGoingSurveyList();
 	}
 	
+	public int getMySurvey(int id) {
+		return surveyDAO.getMySurvey(id);
+	}
+	
 	public List<Survey> getMySurveyList(int id) {
 		return surveyDAO.getMySurveyList(id);
 	}

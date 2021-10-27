@@ -54,6 +54,10 @@ public class SurveyDAO {
 		return sql.selectList(nameSpace + ".getOnGoingSurveyList");
 	}
 
+	public int getMySurvey(int id) {
+		return sql.selectOne(nameSpace + ".getMySurvey", id);
+	}
+	
 	public List<Survey> getMySurveyList(int id) {
 		return sql.selectList(nameSpace + ".getMySurveyList", id);
 	}
