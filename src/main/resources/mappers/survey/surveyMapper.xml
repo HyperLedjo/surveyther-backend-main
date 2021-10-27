@@ -54,7 +54,7 @@
 
 	<select id="getMySurvey" parameterType="Integer"
 		resultType="Integer">
-		SELECT memberId FROM survey WHERE surveyId=#{id}
+		SELECT memberId FROM survey WHERE no=#{id}
 	</select>
 
 	<select id="getMySurveyList"
