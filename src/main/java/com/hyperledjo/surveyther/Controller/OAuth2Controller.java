@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.hyperledjo.surveyther.Config.UrlConfig;
 import com.hyperledjo.surveyther.DTO.Member;
 import com.hyperledjo.surveyther.Service.OAuth2Service;
 
@@ -22,7 +21,7 @@ public class OAuth2Controller {
 	private OAuth2Service oAuth2Service;
 	private HttpSession httpSession;
 
-	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession, UrlConfig urlConfig) {
+	public OAuth2Controller(OAuth2Service oAuth2Service, HttpSession httpSession) {
 		this.oAuth2Service = oAuth2Service;
 		this.httpSession = httpSession;
 	}
@@ -45,8 +44,8 @@ public class OAuth2Controller {
 	@GetMapping("/logout")
 	public void logout(HttpServletResponse response) throws IOException {
 		httpSession.invalidate();
+//		response.sendRedirect("http://ec2-13-125-220-31.ap-northeast-2.compute.amazonaws.com");
 		response.sendRedirect("http://localhost:8081");
-		// response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 
 	/*
@@ -60,6 +59,7 @@ public class OAuth2Controller {
 		JsonNode jsonNode = oAuth2Service.login(code);
 		String token = jsonNode.get("access_token").toString();
 
+		System.out.println("token: " + token);
 		jsonNode = oAuth2Service.getUser(token);
 		String id = jsonNode.get("id").toString();
 
@@ -74,7 +74,7 @@ public class OAuth2Controller {
 		member.setGender(gender);
 		httpSession.setAttribute("member", member);
 
+//		response.sendRedirect("http://ec2-13-125-220-31.ap-northeast-2.compute.amazonaws.com");
 		response.sendRedirect("http://localhost:8081");
-		// response.sendRedirect("http://ec2-52-78-211-80.ap-northeast-2.compute.amazonaws.com:8081");
 	}
 }
