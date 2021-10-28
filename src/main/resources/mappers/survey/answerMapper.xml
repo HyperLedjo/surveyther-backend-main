@@ -16,6 +16,12 @@
 		answer WHERE questionId=#{id}
 	</select>
 
+	<select id="getAnswer"
+		parameterType="Integer"
+		resultType="String">
+		SELECT content FROM answer WHERE no=#{id}
+	</select>
+
 	<select id="getAnswerList"
 		resultType="com.hyperledjo.surveyther.DTO.Answer">
 		SELECT * FROM answer

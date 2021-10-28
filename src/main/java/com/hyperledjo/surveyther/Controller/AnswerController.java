@@ -1,6 +1,7 @@
 package com.hyperledjo.surveyther.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ public class AnswerController {
 		this.answerService = answerService;
 	}
 	
-	@PostMapping("/answer") 
+	@PostMapping("/answers") 
 	public int postAnswer(@RequestBody List<Answer> answers) {
 		if(answers.isEmpty()) return -1;
 		for(Answer answer : answers) {
@@ -33,12 +34,17 @@ public class AnswerController {
 		return 1;
 	}
 	
-	@GetMapping("/answer/{id}")
+	@GetMapping("/answers/{id}")
 	public List<Answer> getAnswersFromSurvey(@PathVariable("id") int id) {
 		return answerService.getAnswersFromSurvey(id);
 	}
 	
-	@GetMapping("/answer")
+	@GetMapping("/answer/{id}")
+	public Map<String, String> getAnswer(@PathVariable("id") int id) {
+		return answerService.getAnswer(id);
+	}
+	
+	@GetMapping("/answers")
 	public List<Answer> getAnswerList() {
 		return answerService.getAnswerList();
 	}
