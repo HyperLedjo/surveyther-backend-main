@@ -3,6 +3,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.SurveyOrderDAO">
+	<select id="checkSurveyOrder"
+		parameterType="com.hyperledjo.surveyther.DTO.SurveyOrder"
+		resultType="com.hyperledjo.surveyther.DTO.SurveyOrder">
+		SELECT * FROM survey_order WHERE memberId=#{memberId} AND surveyId=#{surveyId}
+	</select>
+	
 	<insert id="postSurveyOrder"
 		parameterType="com.hyperledjo.surveyther.DTO.SurveyOrder">
 		INSERT INTO survey_order(memberId, surveyId, paymentId,

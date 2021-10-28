@@ -14,6 +14,10 @@ public class SurveyOrderService {
 		this.surveyOrderDAO = surveyOrderDAO;
 	}
 
+	public SurveyOrder checkSurveyOrder(SurveyOrder surveyOrder) {
+		return surveyOrderDAO.checkSurveyOrder(surveyOrder);
+	}
+	
 	public int postSurveyOrder(SurveyOrder surveyOrder) {
 		return surveyOrderDAO.postSurveyOrder(surveyOrder);
 	}

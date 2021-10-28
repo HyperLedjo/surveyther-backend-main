@@ -19,6 +19,11 @@ public class OrderController {
 		this.surveyOrderService = surveyOrderService;
 	}
 	
+	@PostMapping("/order/survey/check")
+	public SurveyOrder checkSurveyOrder(@RequestBody SurveyOrder surveyOrder) {
+		return surveyOrderService.checkSurveyOrder(surveyOrder);
+	}
+	
 	@PostMapping("/order/survey")
 	public int postSurveyOrder(@RequestBody SurveyOrder surveyOrder) {
 		return surveyOrderService.postSurveyOrder(surveyOrder);
