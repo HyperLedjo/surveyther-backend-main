@@ -98,8 +98,9 @@ public class Web3Contract {
 		Admin admin = web3Build.getAdmin();
 		String pk = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
 		Credentials credentials = Credentials.create(pk);
+		@SuppressWarnings("deprecation")
 		ContractGasProvider gasProvider = new StaticGasProvider(ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
-		String contractAddress = "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24";
+		String contractAddress = "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab";
 
 		RegSurvey regSurvey = RegSurvey.load(contractAddress, admin, credentials, gasProvider);
 //		String cAddress = regSurvey.getContractAddress();

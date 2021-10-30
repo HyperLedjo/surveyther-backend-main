@@ -39,35 +39,7 @@ public class Web3Transaction {
 		this.wb = wb;
 	}
 
-//	public String sendRegSurveyTransaction(Function function, String contractAddress) throws Exception {
-//		Admin admin = wb.getAdmin();
-//		String from = "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1";
-////		String from = "0x3e0365e8cd714684a83866966cd30d9a05d55443";
-//		String txHash = null;
-//
-//		PersonalUnlockAccount personalUnlockAccount = admin.personalUnlockAccount(from, "surveyther").send();
-//		if (personalUnlockAccount.accountUnlocked()) {
-//
-//			EthGetTransactionCount ethGetTransactionCount = admin
-//					.ethGetTransactionCount(from, DefaultBlockParameterName.LATEST).send();
-//
-//			BigInteger nonce = ethGetTransactionCount.getTransactionCount();
-//
-//			Transaction transaction = Transaction.createFunctionCallTransaction(from, nonce, Transaction.DEFAULT_GAS,
-//					null, contractAddress, FunctionEncoder.encode(function));
-//			EthSendTransaction ethSendTransaction = admin.ethSendTransaction(transaction).send();
-//
-//			txHash = ethSendTransaction.getTransactionHash();
-//
-//			Thread.sleep(5000);
-//
-//			logger.info("[Web3Transaction, txHash] " + txHash);
-//			return txHash;
-//		} else {
-//			throw new Exception();
-//		}
-//	}
-
+	// 등록된 서베이 조회
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public JsonNode callRegSurveyRetrieve(Function function, String contractAddress) throws IOException {
 		Admin admin = wb.getAdmin();
@@ -99,6 +71,7 @@ public class Web3Transaction {
 		return jsonNode;
 	}
 
+	// 이더 전송
 	public String transferEth(String recipient) {
 
 		Admin admin = wb.getAdmin();
@@ -115,6 +88,35 @@ public class Web3Transaction {
 		return txHash;
 	}
 
+//	public String sendRegSurveyTransaction(Function function, String contractAddress) throws Exception {
+//	Admin admin = wb.getAdmin();
+//	String from = "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1";
+////	String from = "0x3e0365e8cd714684a83866966cd30d9a05d55443";
+//	String txHash = null;
+//
+//	PersonalUnlockAccount personalUnlockAccount = admin.personalUnlockAccount(from, "surveyther").send();
+//	if (personalUnlockAccount.accountUnlocked()) {
+//
+//		EthGetTransactionCount ethGetTransactionCount = admin
+//				.ethGetTransactionCount(from, DefaultBlockParameterName.LATEST).send();
+//
+//		BigInteger nonce = ethGetTransactionCount.getTransactionCount();
+//
+//		Transaction transaction = Transaction.createFunctionCallTransaction(from, nonce, Transaction.DEFAULT_GAS,
+//				null, contractAddress, FunctionEncoder.encode(function));
+//		EthSendTransaction ethSendTransaction = admin.ethSendTransaction(transaction).send();
+//
+//		txHash = ethSendTransaction.getTransactionHash();
+//
+//		Thread.sleep(5000);
+//
+//		logger.info("[Web3Transaction, txHash] " + txHash);
+//		return txHash;
+//	} else {
+//		throw new Exception();
+//	}
+//}
+	
 //	public TransactionReceipt getReceipt(String transactionHash) throws IOException {
 //
 //		Admin admin = wb.getAdmin();
