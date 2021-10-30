@@ -1,7 +1,5 @@
 package com.hyperledjo.surveyther.Controller;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hyperledjo.surveyther.DTO.Participants;
 import com.hyperledjo.surveyther.Service.ParticipantsService;
 
