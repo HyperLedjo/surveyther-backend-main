@@ -85,6 +85,6 @@
 		resultType="com.hyperledjo.surveyther.DTO.Survey">
 		SELECT *
 		FROM
-		survey
+		survey ORDER BY no DESC
 	</select>
 </mapper>
