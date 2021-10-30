@@ -4,6 +4,11 @@
 
 <mapper namespace="com.hyperledjo.surveyther.DAO.MemberDAO">
 
+	<update id="uploadWallet"
+	parameterType="com.hyperledjo.surveyther.DTO.Member">
+		UPDATE member SET wallet=#{wallet} WHERE id=#{id}
+	</update>
+
 	<update id="patchMember"
 		parameterType="com.hyperledjo.surveyther.DTO.Member">
 		UPDATE member SET name=#{name}, birthYear=#{birthYear},

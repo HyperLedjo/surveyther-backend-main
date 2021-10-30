@@ -6,12 +6,10 @@ public class Wallet {
 	private String address;
 	private String privateKey;
 
-	public String getPrivateKey() {
-		return privateKey;
-	}
-
-	public void setPrivateKey(String privateKey) {
-		this.privateKey = privateKey;
+	@Override
+	public String toString() {
+		return "Wallet [no=" + no + ", memberId=" + memberId + ", address=" + address + ", privateKey=" + privateKey
+				+ "]";
 	}
 
 	public int getNo() {
@@ -38,8 +36,11 @@ public class Wallet {
 		this.address = address;
 	}
 
-	@Override
-	public String toString() {
-		return "Wallet [no=" + no + ", memberId=" + memberId + ", address=" + address + "]";
+	public String getPrivateKey() {
+		return privateKey;
+	}
+
+	public void setPrivateKey(String privateKey) {
+		this.privateKey = privateKey;
 	}
 }

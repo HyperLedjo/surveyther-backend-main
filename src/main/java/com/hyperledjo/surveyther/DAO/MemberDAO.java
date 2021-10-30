@@ -17,6 +17,10 @@ public class MemberDAO {
 		this.sql = sql;
 	}
 
+	public int uploadWallet(Member member) {
+		return sql.update(nameSpace + ".uploadWallet", member);
+	}
+	
 	public int patchMember(Member member) {
 		int result = sql.update(nameSpace + ".patchMember", member);
 		if (result < 1) {

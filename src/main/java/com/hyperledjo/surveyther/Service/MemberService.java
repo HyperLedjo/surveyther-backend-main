@@ -19,7 +19,7 @@ public class MemberService {
 		this.memberDAO = memberDAO;
 		this.walletDAO = walletDAO;
 	}
-
+	
 	public int patchMember(Member member) {
 		return memberDAO.patchMember(member);
 	}
@@ -31,13 +31,18 @@ public class MemberService {
 		}
 		Wallet wallet = new Wallet();
 		wallet.setMemberId(member.getNo());
+		System.out.println(member.getNo());
 		result = walletDAO.postWallet(wallet);
 		if (result < 1) {
 			return -1;
 		}
 		wallet = walletDAO.getWallet(member.getNo());
+		System.out.println("my wallet: " + wallet);
+		System.out.println(wallet);
 		member.setWallet(wallet.getAddress());
-		result = memberDAO.patchMember(member);
+		System.out.println("my member: "+ member);
+		result = memberDAO.uploadWallet(member);
+		System.out.println(result);
 		if (result < 1) {
 			return 0;
 		}

@@ -22,12 +22,13 @@ public class Member {
 	private boolean confirm;
 	private Timestamp regDate;
 
-	public boolean isConfirm() {
-		return confirm;
-	}
-
-	public void setConfirm(boolean confirm) {
-		this.confirm = confirm;
+	@Override
+	public String toString() {
+		return "Member [no=" + no + ", id=" + id + ", name=" + name + ", birthYear=" + birthYear + ", birthDay="
+				+ birthDay + ", gender=" + gender + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
+				+ ", email=" + email + ", residence=" + residence + ", job=" + job + ", married=" + married
+				+ ", academic=" + academic + ", income=" + income + ", wallet=" + wallet + ", confirm=" + confirm
+				+ ", regDate=" + regDate + "]";
 	}
 
 	public int getNo() {
@@ -158,20 +159,19 @@ public class Member {
 		this.wallet = wallet;
 	}
 
+	public boolean isConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(boolean confirm) {
+		this.confirm = confirm;
+	}
+
 	public Timestamp getRegDate() {
 		return regDate;
 	}
 
 	public void setRegDate(Timestamp regDate) {
 		this.regDate = regDate;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [no=" + no + ", id=" + id + ", name=" + name + ", birthYear=" + birthYear + ", birthDay="
-				+ birthDay + ", gender=" + gender + ", phone1=" + phone1 + ", phone2=" + phone2 + ", phone3=" + phone3
-				+ ", email=" + email + ", residence=" + residence + ", job=" + job + ", married=" + married
-				+ ", academic=" + academic + ", income=" + income + ", wallet=" + wallet + ", confirm=" + confirm
-				+ ", regDate=" + regDate + "]";
 	}
 }
