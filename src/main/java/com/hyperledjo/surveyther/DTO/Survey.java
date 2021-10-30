@@ -23,6 +23,24 @@ public class Survey {
 	private int status;
 	private int blockNo;
 	private String txHash;
+	private String author;
+	
+	@Override
+	public String toString() {
+		return "Survey [no=" + no + ", memberId=" + memberId + ", category=" + category + ", title=" + title
+				+ ", content=" + content + ", goalParticipants=" + goalParticipants + ", currentParticipants="
+				+ currentParticipants + ", regDate=" + regDate + ", deadline=" + deadline + ", paid=" + paid + ", fee="
+				+ fee + ", likes=" + likes + ", comments=" + comments + ", status=" + status + ", blockNo=" + blockNo
+				+ ", txHash=" + txHash + ", author=" + author + "]";
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
 	public int getBlockNo() {
 		return blockNo;
@@ -150,12 +168,5 @@ public class Survey {
 
 	public void setStatus(int status) {
 		this.status = status;
-	}
-
-	@Override
-	public String toString() {
-		return "Survey [no=" + no + ", memberId=" + memberId + ", category=" + category + ", title=" + title
-				+ ", content=" + content + ", goalParticipants=" + goalParticipants + ", regDate=" + regDate
-				+ ", deadline=" + deadline + ", status=" + status + "]";
 	}
 }

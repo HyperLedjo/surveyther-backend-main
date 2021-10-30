@@ -35,12 +35,12 @@
 		parameterType="com.hyperledjo.surveyther.DTO.Survey">
 		INSERT INTO survey(memberId, category, title, content,
 		goalParticipants, regDate, deadline, paid, fee, status, blockNo,
-		txHash)
+		txHash, author)
 		VALUES(#{memberId},
 		#{category}, #{title}, #{content},
 		#{goalParticipants}, now(),
 		#{deadline}, #{paid}, #{fee}, 0,
-		#{blockNo}, #{txHash})
+		#{blockNo}, #{txHash}, #{author})
 		<selectKey keyProperty="no" resultType="Integer"
 			order="AFTER">
 			SELECT
