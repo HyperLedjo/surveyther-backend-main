@@ -1,6 +1,9 @@
 package com.hyperledjo.surveyther.Controller;
 
+import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hyperledjo.surveyther.Blockchain.Web3Contract;
 import com.hyperledjo.surveyther.DTO.Category;
 import com.hyperledjo.surveyther.DTO.Survey;
 import com.hyperledjo.surveyther.Service.CategoryService;
@@ -21,15 +25,34 @@ public class SurveyController {
 
 	private SurveyService surveyService;
 	private CategoryService categoryService;
+	private Web3Contract web3Contract;
 
-	public SurveyController(SurveyService surveyService, CategoryService categoryService) {
+	public SurveyController(SurveyService surveyService, CategoryService categoryService, Web3Contract web3Contract) {
 		this.surveyService = surveyService;
 		this.categoryService = categoryService;
+		this.web3Contract = web3Contract;
 	}
 
 	@PostMapping("/survey")
 	public int postSurvey(@RequestBody Survey survey) {
-		return surveyService.postSurvey(survey);
+		int no = surveyService.postSurvey(survey);
+		String now = LocalDate.now().toString();
+
+		try {
+			Map<String, String> map = web3Contract.regSurveyStore(BigInteger.valueOf(survey.getMemberId()), BigInteger.valueOf(no), now);
+			int blockNo = Integer.valueOf(map.get("blockNum"));
+			survey.setBlockNo(blockNo);
+			survey.setTxHash(map.get("txHash"));
+			
+			int result = surveyService.patchSurvey(survey);
+			if(result < 1) {
+				return -1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return no;
 	}
 
 	//
@@ -52,7 +75,7 @@ public class SurveyController {
 	public int getMySurvey(@PathVariable("id") int id) {
 		return surveyService.getMySurvey(id);
 	}
-	
+
 	@GetMapping("/surveys/my/{id}")
 	public List<Survey> getMySurveyList(@PathVariable("id") int id) {
 		return surveyService.getMySurveyList(id);

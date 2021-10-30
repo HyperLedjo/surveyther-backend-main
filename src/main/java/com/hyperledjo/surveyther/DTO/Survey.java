@@ -21,6 +21,24 @@ public class Survey {
 	private int comments;
 	// status - 0: 진행, 1: 마감
 	private int status;
+	private int blockNo;
+	private String txHash;
+
+	public int getBlockNo() {
+		return blockNo;
+	}
+
+	public void setBlockNo(int blockNo) {
+		this.blockNo = blockNo;
+	}
+
+	public String getTxHash() {
+		return txHash;
+	}
+
+	public void setTxHash(String txHash) {
+		this.txHash = txHash;
+	}
 
 	public double getPaid() {
 		return paid;

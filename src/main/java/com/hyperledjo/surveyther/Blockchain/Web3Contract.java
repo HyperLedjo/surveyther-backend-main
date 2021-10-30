@@ -5,6 +5,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,15 +45,17 @@ public class Web3Contract {
 		this.web3Transaction = web3Transaction;
 	}
 
-	public JsonNode answerResponseSurveyStore(BigInteger surveyId, BigInteger memberId, BigInteger questionId, BigInteger answerId) throws Exception {
-		
+	public JsonNode answerResponseSurveyStore(BigInteger surveyId, BigInteger memberId, BigInteger questionId,
+			BigInteger answerId) throws Exception {
+
 		Admin admin = web3Build.getAdmin();
 		String pk = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
 		Credentials credentials = Credentials.create(pk);
 		ContractGasProvider gasProvider = new StaticGasProvider(ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
 		String contractAddress = "0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7";
-		
-		AnswerResponseSurvey answerResponseSurvey = AnswerResponseSurvey.load(contractAddress, admin, credentials, gasProvider);
+
+		AnswerResponseSurvey answerResponseSurvey = AnswerResponseSurvey.load(contractAddress, admin, credentials,
+				gasProvider);
 		TransactionReceipt receipt = answerResponseSurvey.store(surveyId, memberId, questionId, answerId).send();
 
 		HashMap<Integer, String> hashMap = new HashMap<>();
@@ -65,7 +68,7 @@ public class Web3Contract {
 
 		return jsonNode;
 	};
-	
+
 	public JsonNode participantSurveyStore(BigInteger memberId, BigInteger surveyId, String partiDate)
 			throws Exception {
 
@@ -89,27 +92,33 @@ public class Web3Contract {
 		return jsonNode;
 	}
 
-	public JsonNode regSurveyStore(String contractMethodName, BigInteger memberId, BigInteger surveyId, String regDate)
-			throws Exception {
+	@SuppressWarnings("unchecked")
+	public Map<String, String> regSurveyStore(BigInteger memberId, BigInteger surveyId, String regDate) throws Exception {
 
 		Admin admin = web3Build.getAdmin();
 		String pk = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
 		Credentials credentials = Credentials.create(pk);
 		ContractGasProvider gasProvider = new StaticGasProvider(ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
-		String contractAddress = "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab";
+		String contractAddress = "0x5b1869D9A4C187F2EAa108f3062412ecf0526b24";
 
 		RegSurvey regSurvey = RegSurvey.load(contractAddress, admin, credentials, gasProvider);
 //		String cAddress = regSurvey.getContractAddress();
 		TransactionReceipt receipt = regSurvey.store(memberId, surveyId, regDate).send();
 
-		HashMap<Integer, String> hashMap = new HashMap<>();
+		ObjectMapper objMapper = new ObjectMapper();
+		Map<String, String> map;
+
 		int blockNum = receipt.getBlockNumber().intValue();
 		String txHash = receipt.getTransactionHash();
-		hashMap.put(blockNum, txHash);
 
-		ObjectMapper objMapper = new ObjectMapper();
-		JsonNode jsonNode = objMapper.valueToTree(hashMap);
+		String json = "{\"blockNum\":\"" 
+						+ blockNum + "\","
+						+ "\"txHash\":\""
+						+ txHash + "\""
+						+ "}";
 
+		System.out.println(json);
+		map = objMapper.readValue(json, Map.class);
 //		Function function = new Function(contractMethodName,
 //				Arrays.<Type>asList(new Uint2pu56(_memberId), new Uint256(_surveyId), new Utf8String(_regDate)),
 //				Collections.<TypeReference<?>>emptyList());
@@ -138,7 +147,7 @@ public class Web3Contract {
 //
 //		logger.info("[Web3Contract, receipt] " + receipt);
 //
-		return jsonNode;
+		return map;
 	}
 
 	public void answerResponseSurveyRetrieve(BigInteger surveyId) throws Exception {
@@ -148,9 +157,11 @@ public class Web3Contract {
 		Credentials credentials = Credentials.create(pk);
 		ContractGasProvider gasProvider = new StaticGasProvider(ManagedTransaction.GAS_PRICE, Contract.GAS_LIMIT);
 
-		AnswerResponseSurvey answerResponseSurvey = AnswerResponseSurvey.load(contractAddress, admin, credentials, gasProvider);
-		
-		Tuple3<List<BigInteger>, List<BigInteger>, List<BigInteger>> results = answerResponseSurvey.retrieve(surveyId).send();
+		AnswerResponseSurvey answerResponseSurvey = AnswerResponseSurvey.load(contractAddress, admin, credentials,
+				gasProvider);
+
+		Tuple3<List<BigInteger>, List<BigInteger>, List<BigInteger>> results = answerResponseSurvey.retrieve(surveyId)
+				.send();
 	};
 
 	public JsonNode participantSurveyRetrieve(BigInteger memberId) throws Exception {

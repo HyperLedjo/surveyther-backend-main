@@ -19,7 +19,7 @@ public class KeyConfig {
 	private String clientSecretKey;
 
 	@Value("${app.admin.key}")
-	private String appAdminKey;
+	private String appAdminKey; 
 
 	// Key를 필요로 하는 곳에서 전부 사용하기 때문에 중복 생성을 막기 위해 싱글톤으로 구현
 //	private static KeyConfig instance = new KeyConfig();

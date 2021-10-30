@@ -1,12 +1,14 @@
 package com.hyperledjo.surveyther.Controller;
 
-import java.io.IOException;
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hyperledjo.surveyther.Blockchain.Web3Build;
 import com.hyperledjo.surveyther.Blockchain.Web3Common;
@@ -55,7 +57,7 @@ public class WalletController {
 
 	// /api/web3/test/store
 	@GetMapping("/web3/test/store")
-	public JsonNode web3TestStore() throws Exception {
+	public Map<String, String> web3TestStore() throws Exception {
 //		String contractMethodName = "store";
 //		BigInteger _memberId = BigInteger.valueOf(1);
 //		BigInteger _surveyId = BigInteger.valueOf(1);
@@ -66,9 +68,11 @@ public class WalletController {
 		BigInteger questionId = BigInteger.valueOf(27);
 		BigInteger answerId = BigInteger.valueOf(23);
 		
-		return wc.answerResponseSurveyStore(surveyId, memberId, questionId, answerId);
+//		return wc.answerResponseSurveyStore(surveyId, memberId, questionId, answerId);
 //		return wc.participantSurveyStore(_memberId, _surveyId, _regDate);
-//		return wc.regSurveyStore(contractMethodName, _memberId, _surveyId, _regDate);
+		Map<String, String> j =  wc.regSurveyStore(memberId, surveyId, "2021-10-30");
+		
+		return j;
 	}
 
 	// /api/web3/test/retrieve

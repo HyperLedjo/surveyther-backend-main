@@ -30,6 +30,10 @@ public class SurveyDAO {
 		return sql.selectList(nameSpace + ".getSurveyToCloseList", now);
 	}
 	
+	public int patchSurvey(Survey survey) {
+		return sql.update(nameSpace + ".patchSurvey", survey);
+	}
+	
 	public int postSurvey(Survey survey) {
 		try {
 			sql.insert(nameSpace + ".postSurvey", survey);

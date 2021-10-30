@@ -1,9 +1,11 @@
 package com.hyperledjo.surveyther.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.hyperledjo.surveyther.Blockchain.Web3Contract;
 import com.hyperledjo.surveyther.DAO.SurveyDAO;
 import com.hyperledjo.surveyther.DTO.Survey;
 import com.hyperledjo.surveyther.DTO.TransferComments;
@@ -26,7 +28,12 @@ public class SurveyService {
 		return surveyDAO.updateLikes(tl);
 	}
 	
+	public int patchSurvey(Survey survey) {
+		return surveyDAO.patchSurvey(survey);
+	}
+	
 	public int postSurvey(Survey survey) {
+		// 등록할 서베이 정보중 일부를 컨트랙트를 통해 블록에 기록함
 		return surveyDAO.postSurvey(survey);
 	}
 	
