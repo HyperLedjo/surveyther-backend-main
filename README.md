@@ -65,5 +65,17 @@ SpringBoot 2.5.4
 ## 데이터베이스
 - MySQL
 
+# 서비스 아키텍쳐
+1. Layer
+
+2. Structure
+
+
+
 # 핵심 기능
-## 대리자 서비스
+1. 서베이 등록 및 결제 프로세스
+2. 서베이 참여 및 보상 지급 프로세스
+3. 서베이 마감 프로세스
+4. 서베이 구매 및 결제 프로세스
+5. 컨트랙트 대리자 서비스    
+<img src="https://user-images.githubusercontent.com/67471629/140270412-fb9df1cb-e6ef-4f60-bd4a-811a54461890.png" alt="대리자 서비스">
