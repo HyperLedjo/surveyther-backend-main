@@ -5,6 +5,7 @@
 
 ## Our team
 
+- 홍덕기 (Mentor)
 - 김한결 (Backend Developer, Team Leader)
 - 양성희 (Frontend Developer)
 - 박병규 (Solidity Developer) 
