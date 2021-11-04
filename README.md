@@ -79,9 +79,14 @@ SpringBoot 2.5.4
 
 
 # 핵심 기능
-1. 서베이 등록 및 결제 프로세스
-2. 서베이 참여 및 보상 지급 프로세스
-3. 서베이 마감 프로세스
-4. 서베이 구매 및 결제 프로세스
-5. 컨트랙트 대리자 서비스    
+1. 서베이 등록 및 참여 프로세스
+<img src="https://user-images.githubusercontent.com/67471629/140271530-ab1189cd-8a37-4d80-bb0a-2242771143af.png" alt="서베이 등록 및 참여 프로세스"/>
+
+2. 서베이 보상 지급 프로세스
+<img src="https://user-images.githubusercontent.com/67471629/140271545-4b943b9c-747f-43b6-9315-89a5e3799d3a.png" alt="서베이 보상 지급 프로세스"/>
+
+3. 서베이 마감 및 구매 프로세스
+<img src="https://user-images.githubusercontent.com/67471629/140271558-f0136585-30cf-474f-a265-db9451ec9e81.png" alt="서베이 마감 및 구매 프로세스"/>
+
+4. 컨트랙트 대리자 서비스    
 <img src="https://user-images.githubusercontent.com/67471629/140270412-fb9df1cb-e6ef-4f60-bd4a-811a54461890.png" alt="대리자 서비스"/>
