@@ -54,6 +54,8 @@ SpringBoot 2.5.4
 - Spring Boot
 - Web3J
 - Web3J-CLI
+- Kakao Login/Logout API
+- I'm Port 결제 모듈 API
 
 ## 블록체인
 - Ethereum
