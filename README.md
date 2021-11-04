@@ -21,7 +21,8 @@ SpringBoot 2.5.4
 블록체인 기반 서베이 데이터 거래 플랫폼 '서베이더'
 
 ## 프로젝트 작업 기간
-2021. 09. ~ 2021. 10. (2개월)
+2021년 9월 ~ 10월 초 : 기획 및 설계
+2021년 10월 ~ 10월 말 : 
     
 ## 개발 배경
 - 많은 시간과 비용 지출
@@ -68,8 +69,11 @@ SpringBoot 2.5.4
 # 서비스 아키텍쳐
 1. Layer
 
+<img src="https://user-images.githubusercontent.com/67471629/140270506-b19dc641-4589-4e19-80d2-b7a9ac58fcc8.png" alt="서비스 레이어"/>
+
 2. Structure
 
+<img src="https://user-images.githubusercontent.com/67471629/140270522-c4d96d6c-cfa1-474a-8390-760650f5612b.png" alt="서비스 구조도"/>
 
 
 # 핵심 기능
@@ -78,4 +82,4 @@ SpringBoot 2.5.4
 3. 서베이 마감 프로세스
 4. 서베이 구매 및 결제 프로세스
 5. 컨트랙트 대리자 서비스    
-<img src="https://user-images.githubusercontent.com/67471629/140270412-fb9df1cb-e6ef-4f60-bd4a-811a54461890.png" alt="대리자 서비스">
+<img src="https://user-images.githubusercontent.com/67471629/140270412-fb9df1cb-e6ef-4f60-bd4a-811a54461890.png" alt="대리자 서비스"/>
