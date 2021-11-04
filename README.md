@@ -17,6 +17,9 @@ SpringBoot 2.5.4
 
 # 프로젝트 개요
 
+## 프로젝트 설명 PPT 링크
+https://docs.google.com/presentation/d/1OTcdED1S4gDFGvlrI_pZK4po3ZErnIy8jXrHzGjLimc/edit?usp=sharing
+
 ## 프로젝트 제목
 블록체인 기반 서베이 데이터 거래 플랫폼 '서베이더'
 
