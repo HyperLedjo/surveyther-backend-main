@@ -24,13 +24,13 @@ public class WalletController {
 	}
 
 	@PostMapping("/transferEth")
-	public String transferEth(@RequestBody String receiptAddress) {
-		return web3Transaction.transferEth(receiptAddress);
+	public String transferEth(@RequestBody String recipient) {
+		return web3Transaction.transferEth(recipient);
 	}
 
 	@PostMapping("/ethGetBalance")
-	public String ethGetBalance(@RequestBody String receiptAddress) {
-		return web3Common.ethGetBalance(receiptAddress);
+	public String ethGetBalance(@RequestBody String recipient) {
+		return web3Common.ethGetBalance(recipient);
 	}
 
 	@GetMapping("/shutdown")

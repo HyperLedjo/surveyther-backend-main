@@ -95,6 +95,9 @@ public class Web3Contract {
 	@SuppressWarnings("unchecked")
 	public Map<String, String> regSurveyStore(BigInteger memberId, BigInteger surveyId, String regDate) throws Exception {
 
+		// 2021-11-14, 컨트랙트를 대리자가 호출하기 전에 검증 가능한 사용자인지를 먼저 체크하는 것이 필요
+		// Credential을 Load해서 true면 대리자 서비스 이용 가능하도록 기능 추가 필요
+		
 		Admin admin = web3Build.getAdmin();
 		String pk = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
 		Credentials credentials = Credentials.create(pk);
@@ -103,7 +106,6 @@ public class Web3Contract {
 		String contractAddress = "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab";
 
 		RegSurvey regSurvey = RegSurvey.load(contractAddress, admin, credentials, gasProvider);
-//		String cAddress = regSurvey.getContractAddress();
 		TransactionReceipt receipt = regSurvey.store(memberId, surveyId, regDate).send();
 
 		ObjectMapper objMapper = new ObjectMapper();
