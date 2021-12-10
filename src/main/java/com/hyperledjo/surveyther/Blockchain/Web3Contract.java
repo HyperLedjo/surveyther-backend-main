@@ -97,6 +97,7 @@ public class Web3Contract {
 
 		// 2021-11-14, 컨트랙트를 대리자가 호출하기 전에 검증 가능한 사용자인지를 먼저 체크하는 것이 필요
 		// Credential을 Load해서 true면 대리자 서비스 이용 가능하도록 기능 추가 필요
+		// Hint : https://medium.com/rayonprotocol/%EC%9D%B4%EB%8D%94%EB%A6%AC%EC%9B%80-%EA%B3%84%EC%A0%95%EC%9C%BC%EB%A1%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%9C%EB%AA%85-%EB%B0%8F-%EA%B2%80%EC%A6%9D-5fb856a96cf4
 		
 		Admin admin = web3Build.getAdmin();
 		String pk = "0x4f3edf983ac636a65a842ce7c78d9aa706d3b113bce9c46f30d7d21715b23b1d";
