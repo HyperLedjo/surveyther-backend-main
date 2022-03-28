@@ -1,12 +1,10 @@
 package com.hyperledjo.surveyther.Blockchain;
 
-import java.io.IOException;
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hyperledjo.surveyther.Contract.AnswerResponseSurvey;
+import com.hyperledjo.surveyther.Contract.ParticipantSurvey;
+import com.hyperledjo.surveyther.Contract.RegSurvey;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -26,11 +24,12 @@ import org.web3j.tx.ManagedTransaction;
 import org.web3j.tx.gas.ContractGasProvider;
 import org.web3j.tx.gas.StaticGasProvider;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hyperledjo.surveyther.Contract.AnswerResponseSurvey;
-import com.hyperledjo.surveyther.Contract.ParticipantSurvey;
-import com.hyperledjo.surveyther.Contract.RegSurvey;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class Web3Contract {

@@ -1,11 +1,10 @@
 package com.hyperledjo.surveyther.DAO;
 
-import java.util.List;
-
+import com.hyperledjo.surveyther.DTO.Tag;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hyperledjo.surveyther.DTO.Tag;
+import java.util.List;
 
 @Repository
 public class TagDAO {

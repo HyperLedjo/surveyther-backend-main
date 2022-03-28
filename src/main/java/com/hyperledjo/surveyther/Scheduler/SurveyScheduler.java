@@ -1,13 +1,12 @@
 package com.hyperledjo.surveyther.Scheduler;
 
-import java.time.LocalDate;
-import java.util.List;
-
+import com.hyperledjo.surveyther.DAO.SurveyDAO;
+import com.hyperledjo.surveyther.DTO.Survey;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.hyperledjo.surveyther.DAO.SurveyDAO;
-import com.hyperledjo.surveyther.DTO.Survey;
+import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class SurveyScheduler {

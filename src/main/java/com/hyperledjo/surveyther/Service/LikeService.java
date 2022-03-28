@@ -1,13 +1,12 @@
 package com.hyperledjo.surveyther.Service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.hyperledjo.surveyther.DAO.LikeDAO;
 import com.hyperledjo.surveyther.DAO.SurveyDAO;
 import com.hyperledjo.surveyther.DTO.Like;
 import com.hyperledjo.surveyther.DTO.TransferLikes;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class LikeService {

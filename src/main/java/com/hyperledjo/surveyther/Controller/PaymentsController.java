@@ -1,13 +1,5 @@
 package com.hyperledjo.surveyther.Controller;
 
-import java.io.IOException;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.hyperledjo.surveyther.Config.KeyConfig;
 import com.hyperledjo.surveyther.DTO.Payments;
 import com.hyperledjo.surveyther.Service.PaymentsService;
@@ -15,6 +7,9 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.IamportResponse;
 import com.siot.IamportRestClient.response.Payment;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")

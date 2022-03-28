@@ -1,11 +1,10 @@
 package com.hyperledjo.surveyther.Service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.hyperledjo.surveyther.DAO.SearchDAO;
 import com.hyperledjo.surveyther.DTO.Survey;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SearchService {

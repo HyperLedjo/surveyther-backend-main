@@ -1,9 +1,8 @@
 package com.hyperledjo.surveyther.DAO;
 
+import com.hyperledjo.surveyther.DTO.SurveyOrder;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
-
-import com.hyperledjo.surveyther.DTO.SurveyOrder;
 
 @Repository
 public class SurveyOrderDAO {

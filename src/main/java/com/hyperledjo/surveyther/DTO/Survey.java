@@ -2,7 +2,6 @@ package com.hyperledjo.surveyther.DTO;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Survey {
 

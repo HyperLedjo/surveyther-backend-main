@@ -1,11 +1,10 @@
 package com.hyperledjo.surveyther.Config;
 
+import com.hyperledjo.surveyther.Log.LoggingInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.hyperledjo.surveyther.Log.LoggingInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {

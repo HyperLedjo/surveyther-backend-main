@@ -1,13 +1,12 @@
 package com.hyperledjo.surveyther.Controller;
 
-import java.util.List;
-
+import com.hyperledjo.surveyther.DTO.Category;
+import com.hyperledjo.surveyther.Service.CategoryService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hyperledjo.surveyther.DTO.Category;
-import com.hyperledjo.surveyther.Service.CategoryService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")

@@ -1,9 +1,8 @@
 package com.hyperledjo.surveyther.Service;
 
-import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hyperledjo.surveyther.OAuth2.OAuth2Login;
+import org.springframework.stereotype.Service;
 
 @Service
 public class OAuth2Service {

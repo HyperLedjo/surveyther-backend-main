@@ -1,8 +1,6 @@
 package com.hyperledjo.surveyther.Log;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -10,7 +8,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Component
 public class LoggingInterceptor extends HandlerInterceptorAdapter {
@@ -28,14 +27,15 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
 		final ContentCachingRequestWrapper cachingRequest = (ContentCachingRequestWrapper) request;
 		final ContentCachingResponseWrapper cachingResponse = (ContentCachingResponseWrapper) response;
 		if (cachingRequest.getContentType() != null && cachingRequest.getContentType().contains("application/json")) {
-			if (cachingRequest.getContentAsByteArray() != null && cachingRequest.getContentAsByteArray().length != 0) {
+			cachingRequest.getContentAsByteArray();
+			if (cachingRequest.getContentAsByteArray().length != 0) {
 				log.info("[{}] Request Body : {}", HTTP_METHOD,
 						objectMapper.readTree(cachingRequest.getContentAsByteArray()));
 			}
 		}
 		if (cachingResponse.getContentType() != null && cachingResponse.getContentType().contains("application/json")) {
-			if (cachingResponse.getContentAsByteArray() != null
-					&& cachingResponse.getContentAsByteArray().length != 0) {
+			cachingResponse.getContentAsByteArray();
+			if (cachingResponse.getContentAsByteArray().length != 0) {
 				log.info("[{}] Response Body : {}", HTTP_METHOD,
 						objectMapper.readTree(cachingResponse.getContentAsByteArray()));
 			}

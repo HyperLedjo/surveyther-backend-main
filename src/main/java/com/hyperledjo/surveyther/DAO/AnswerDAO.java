@@ -1,12 +1,10 @@
 package com.hyperledjo.surveyther.DAO;
 
-import java.io.IOException;
-import java.util.List;
-
+import com.hyperledjo.surveyther.DTO.Answer;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.hyperledjo.surveyther.DTO.Answer;
+import java.util.List;
 
 @Repository
 public class AnswerDAO {
